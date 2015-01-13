@@ -28,7 +28,7 @@ class InMemoryLocatorFactoryTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(['get'])
             ->getMock();
-        $serviceLocator->expects($this->once())
+        $serviceLocator->expects($this->any())
             ->method('get')
             ->with('config')
             ->willReturn($config);

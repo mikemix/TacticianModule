@@ -14,30 +14,29 @@ use League\Tactician\CommandBus\HandlerExecutionCommandBus;
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
 use TacticianModule\Factory\TacticianCommandBusPluginFactory;
 use Zend\Mvc\Controller\PluginManager;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateService()
     {
+        $handlerClass = uniqid();
+
         $config         = [
             'tactician' => [
                 'default-locator'     => InMemoryLocator::class,
-                'default-command-bus' => HandlerExecutionCommandBus::class,
+                'default-command-bus' => $handlerClass,
                 'commandbus-handlers' => [],
             ],
         ];
-        $serviceLocator = $this->getMockBuilder(ServiceManager::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['get'])
+        $serviceLocator = $this->getMockBuilder(ServiceLocatorInterface::class)
             ->getMock();
-        $serviceLocator->expects($this->at(0))
+        $serviceLocator->expects($this->any())
             ->method('get')
-            ->with('config')
-            ->willReturn($config);
-        $serviceLocator->expects($this->at(1))
-            ->method('get')
-            ->with(HandlerExecutionCommandBus::class)
-            ->willReturn(new HandlerExecutionCommandBus(new InMemoryLocator(), new HandleClassNameInflector()));
+            ->will($this->returnValueMap([
+                ['config', $config],
+                [$handlerClass, new HandlerExecutionCommandBus(new InMemoryLocator(), new HandleClassNameInflector())]
+            ]));
 
         $pluginManager = $this->getMockBuilder(PluginManager::class)
             ->disableOriginalConstructor()
@@ -46,7 +45,6 @@ class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
         $pluginManager->expects($this->once())
             ->method('getServiceLocator')
             ->willReturn($serviceLocator);
-
 
         $factory = new TacticianCommandBusPluginFactory();
 

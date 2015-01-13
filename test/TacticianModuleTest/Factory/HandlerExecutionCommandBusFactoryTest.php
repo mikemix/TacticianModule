@@ -11,34 +11,31 @@ namespace TacticianModuleTest\Factory;
 use League\Tactician\CommandBus\Handler\Locator\InMemoryLocator;
 use League\Tactician\CommandBus\HandlerExecutionCommandBus;
 use TacticianModule\Factory\HandlerExecutionCommandBusFactory;
-use Zend\ServiceManager\ServiceManager;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class HandlerExecutionCommandBusFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateService()
     {
+
+        $defaultLocator = uniqid();
+
         $config         = [
             'tactician' => [
-                'default-locator'     => InMemoryLocator::class,
+                'default-locator'     => $defaultLocator,
                 'default-command-bus' => HandlerExecutionCommandBus::class,
                 'commandbus-handlers' => [],
             ],
         ];
-        $serviceLocator = $this->getMockBuilder(ServiceManager::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['get'])
-            ->getMock();
+        $serviceLocator = $this->getMock(ServiceLocatorInterface::class);
 
-        $serviceLocator->expects($this->at(0))
+        $serviceLocator->expects($this->any())
             ->method('get')
-            ->with('config')
-            ->willReturn($config);
-
-        $serviceLocator->expects($this->at(1))
-            ->method('get')
-            ->with(InMemoryLocator::class)
-            ->willReturn(new InMemoryLocator());
-
+            ->will($this->returnValueMap([
+                    ['config', $config],
+                    [$defaultLocator, new InMemoryLocator()]
+                ])
+            );
 
         $factory = new HandlerExecutionCommandBusFactory();
         $this->assertInstanceOf(HandlerExecutionCommandBus::class, $factory->createService($serviceLocator));
