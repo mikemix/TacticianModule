@@ -10,7 +10,6 @@ namespace TacticianModuleTest\Factory;
 
 use League\Tactician\CommandBus\Handler\Locator\InMemoryLocator;
 use TacticianModule\Factory\InMemoryLocatorFactory;
-use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 
 class InMemoryLocatorFactoryTest extends \PHPUnit_Framework_TestCase
