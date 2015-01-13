@@ -1,0 +1,21 @@
+{
+    "name": "geeh/tactician-module",
+    "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
+    "require": {
+        "league/tactician": "dev-master",
+        "php": ">=5.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gary Hockin",
+            "email": "gary@hock.in"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload":          {
+        "psr-2": {
+            "TacticianModule\\": "src/"
+        }
+    },
+}
