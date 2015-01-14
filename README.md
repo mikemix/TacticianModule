@@ -53,9 +53,9 @@ The module ships with a `InMemoryLocator` and a `HandlerExecutionCommandBus` con
 ],
 ```
 
-The `default-locator` key tells the module which locator to use as default (its a service manager key). The `default-command-bus` key tells the module which command bus to use by default (its also a service manager key). You can overwrite these in any module that is loaded after the `TacticianModule` (ie. comes __after__ `TacticianModule` in `application.config.php`).
+The `default-locator` key tells the module which locator to use as default (it's a service manager key). The `default-command-bus` key tells the module which command bus to use by default (it's also a service manager key). You can overwrite these in any module that is loaded after the `TacticianModule` (ie. comes __after__ `TacticianModule` in `application.config.php`).
 
-The `commandbus-handlers` is a key/value pair array of commands to handlers that are registered via the default locator. These handlers are automatically registered in the locator factory. So if you wanted to register your own `UserLoginCommandHander` to handle `UserLoginCommand`s in your own `module.config.php`:
+The `commandbus-handlers` is a key/value pair array of commands to handlers that are registered via the default locator. These handlers are automatically registered in the locator factory. So if you wanted to register your own `UserLoginCommandHandler` to handle `UserLoginCommand`s in your own `module.config.php`:
 
 ```
 return [
