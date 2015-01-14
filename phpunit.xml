@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <phpunit
-        bootstrap="./Bootstrap.php"
+        bootstrap="./test/Bootstrap.php"
         colors="true"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
@@ -12,11 +12,11 @@
         syntaxCheck="true"
         >
     <testsuite name="TacticianModule tests">
-        <directory>./TacticianModuleTest</directory>
+        <directory>./test/TacticianModuleTest</directory>
     </testsuite>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./../src</directory>
+            <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
 </phpunit>
