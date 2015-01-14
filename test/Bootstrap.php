@@ -7,4 +7,3 @@ if (!$loader) {
 if (!array_key_exists('TacticianModule', $loader->getPrefixes())) {
     $loader->add('TacticianModule', './src');
 }
-
