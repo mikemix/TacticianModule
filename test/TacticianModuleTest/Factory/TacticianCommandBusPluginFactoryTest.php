@@ -7,7 +7,6 @@
 
 namespace TacticianModuleTest\Factory;
 
-
 use League\Tactician\CommandBus\Handler\Locator\InMemoryLocator;
 use League\Tactician\CommandBus\Handler\MethodNameInflector\HandleClassNameInflector;
 use League\Tactician\CommandBus\HandlerExecutionCommandBus;

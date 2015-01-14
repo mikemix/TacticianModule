@@ -7,7 +7,6 @@
 
 namespace TacticianModuleTest\Factory;
 
-
 use League\Tactician\CommandBus\Handler\Locator\InMemoryLocator;
 use League\Tactician\CommandBus\HandlerExecutionCommandBus;
 use TacticianModule\Factory\HandlerExecutionCommandBusFactory;
@@ -31,7 +30,8 @@ class HandlerExecutionCommandBusFactoryTest extends \PHPUnit_Framework_TestCase
 
         $serviceLocator->expects($this->any())
             ->method('get')
-            ->will($this->returnValueMap([
+            ->will(
+                $this->returnValueMap([
                     ['config', $config],
                     [$defaultLocator, new InMemoryLocator()]
                 ])

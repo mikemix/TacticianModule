@@ -1,21 +1,32 @@
 {
-    "name": "geeh/tactician-module",
-    "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
-    "require": {
-        "league/tactician": "dev-master",
-        "php": ">=5.5"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Gary Hockin",
-            "email": "gary@hock.in"
-        }
-    ],
-    "minimum-stability": "dev",
-    "autoload":          {
-        "psr-2": {
-            "TacticianModule\\": "src/"
-        }
-    },
+  "name": "geeh/tactician-module",
+  "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
+  "require": {
+    "zendframework/zendframework": "~2",
+    "league/tactician": "dev-master",
+    "php": ">=5.5"
+  },
+  "keywords": [
+    "zend framework",
+    "zf2",
+    "tactician",
+    "command bus"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gary Hockin",
+      "email": "gary@hock.in"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-2": {
+      "TacticianModule\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4",
+    "squizlabs/php_codesniffer": "~2"
+  }
 }

@@ -7,7 +7,6 @@
 
 namespace TacticianModule\Factory;
 
-
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;

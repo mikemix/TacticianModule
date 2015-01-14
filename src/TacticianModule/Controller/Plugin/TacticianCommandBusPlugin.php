@@ -7,7 +7,6 @@
 
 namespace TacticianModule\Controller\Plugin;
 
-
 use League\Tactician\CommandBus\CommandBus;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
@@ -19,7 +18,7 @@ class TacticianCommandBusPlugin extends AbstractPlugin
      */
     private $commandBus;
 
-    function __construct(CommandBus $commandBus)
+    public function __construct(CommandBus $commandBus)
     {
         $this->commandBus = $commandBus;
     }

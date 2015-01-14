@@ -7,7 +7,6 @@
 
 namespace TacticianModule\Factory;
 
-
 use League\Tactician\CommandBus\Handler\MethodNameInflector\HandleClassNameInflector;
 use League\Tactician\CommandBus\HandlerExecutionCommandBus;
 use Zend\ServiceManager\FactoryInterface;

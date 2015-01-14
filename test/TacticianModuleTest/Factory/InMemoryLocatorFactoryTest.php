@@ -7,7 +7,6 @@
 
 namespace TacticianModuleTest\Factory;
 
-
 use League\Tactician\CommandBus\Handler\Locator\InMemoryLocator;
 use TacticianModule\Factory\InMemoryLocatorFactory;
 use Zend\ServiceManager\ServiceManager;
