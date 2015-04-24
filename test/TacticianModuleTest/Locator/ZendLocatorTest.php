@@ -56,13 +56,11 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
         $this->serviceLocator->setService('config', [
             'tactician' => [
                 'handler-map' => [
-                    'command' => StubClass::class,
+                    'command' => ZendLocatorTest::class,
                 ]
             ],
         ]);
 
-        $this->assertInstanceOf(StubClass::class, $this->locator->getHandlerForCommand('command'));
+        $this->assertInstanceOf(ZendLocatorTest::class, $this->locator->getHandlerForCommand('command'));
     }
 }
-
-class StubClass {}
