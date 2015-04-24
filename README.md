@@ -43,7 +43,7 @@ class Module.php
 
 ### Configuring
 
-The module ships with a `InMemoryLocator` and a `CommandHandlerMiddleware` and a `HandlerInflector` configured as default. If you wish to override the default locator or default command bus implementations, then simply use the `tactician` key in the merged config.
+The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `HandlerInflector` configured as default. If you wish to override the default locator or default command bus implementations, then simply use the `tactician` key in the merged config.
 
 ```
 'tactician' => [
@@ -58,6 +58,8 @@ The module ships with a `InMemoryLocator` and a `CommandHandlerMiddleware` and a
 ```
 
 `default-extractor`, `default-locator` and `default-inflector` are service manager keys to registered services.
+
+`ZendLocator` expects handlers in the `handler-map` to be `commandName => serviceManagerKey` or `commandName => Handler_FQCN`, altough to prevent additional costly checks, use serviceManagerKey and make sure it is available as a Zend Service.
 
 To add custom middleware to the middleware stack, add it to the `middleware` array as `ServiceName` => `priority` in which the middleware are supposed to be executed (higher the number, earlier it will execute). For example
 
