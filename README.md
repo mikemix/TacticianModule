@@ -1,3 +1,5 @@
+> Please note this is not even close to being released, as this version was simply a rapid prototype on an old version of Tactician (a stable release didn't exist at that point). DO NOT USE!
+
 # Tactician ZF2 Module
 ## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF2 applications.
 
