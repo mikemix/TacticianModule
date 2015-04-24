@@ -1,9 +1,11 @@
 {
-  "name": "geeh/tactician-module",
+  "name": "mikemix/tactician-module",
   "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
   "require": {
-    "zendframework/zendframework": "~2",
-    "league/tactician": "dev-master",
+    "zendframework/zend-servicemanager": "~2",
+    "zendframework/zend-mvc": "~2",
+    "zendframework/zend-stdlib": "~2",
+    "league/tactician": "0.*",
     "php": ">=5.5"
   },
   "keywords": [
@@ -15,13 +17,17 @@
   "license": "MIT",
   "authors": [
     {
+      "name": "Michal Zukowski",
+      "email": "support@phpcontext.com"
+    },
+    {
       "name": "Gary Hockin",
       "email": "gary@hock.in"
     }
   ],
   "minimum-stability": "dev",
   "autoload": {
-    "psr-2": {
+    "psr-0": {
       "TacticianModule\\": "src/"
     }
   },

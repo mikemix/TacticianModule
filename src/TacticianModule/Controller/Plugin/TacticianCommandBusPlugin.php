@@ -7,12 +7,11 @@
 
 namespace TacticianModule\Controller\Plugin;
 
-use League\Tactician\CommandBus\CommandBus;
+use League\Tactician\CommandBus;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
 class TacticianCommandBusPlugin extends AbstractPlugin
 {
-
     /**
      * @var CommandBus
      */

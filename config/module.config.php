@@ -1,14 +1,24 @@
 <?php
-use League\Tactician\CommandBus\Handler\Locator\InMemoryLocator;
-use League\Tactician\CommandBus\HandlerExecutionCommandBus;
-use TacticianModule\Factory\HandlerExecutionCommandBusFactory;
+
+use League\Tactician\CommandBus;
+use League\Tactician\Handler\CommandHandlerMiddleware;
+use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
+use League\Tactician\Handler\Locator\InMemoryLocator;
+use League\Tactician\Handler\MethodNameInflector\HandleInflector;
+use TacticianModule\Factory\CommandBusFactory;
+use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
+use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
 use TacticianModule\Factory\InMemoryLocatorFactory;
-use TacticianModule\Factory\TacticianCommandBusPluginFactory;
 
 return [
     'service_manager' => [
+        'invokables' => [
+            ClassNameExtractor::class => ClassNameExtractor::class,
+            HandleInflector::class => HandleInflector::class,
+        ],
         'factories' => [
-            HandlerExecutionCommandBus::class => HandlerExecutionCommandBusFactory::class,
+            CommandBus::class => CommandBusFactory::class,
+            CommandHandlerMiddleware::class => CommandHandlerMiddlewareFactory::class,
             InMemoryLocator::class => InMemoryLocatorFactory::class,
         ],
     ],
@@ -18,8 +28,12 @@ return [
         ],
     ],
     'tactician' => [
-        'default-locator' => InMemoryLocator::class,
-        'default-command-bus' => HandlerExecutionCommandBus::class,
-        'commandbus-handlers' => [],
+        'default-extractor'  => ClassNameExtractor::class,
+        'default-locator'    => InMemoryLocator::class,
+        'default-inflector'  => HandleInflector::class,
+        'handler-map'        => [],
+        'middleware'         => [
+            CommandHandlerMiddleware::class => 0,
+        ],
     ],
 ];
