@@ -4,6 +4,7 @@ namespace TacticianModuleTest\Factory;
 use League\Tactician\CommandBus;
 use League\Tactician\Middleware;
 use TacticianModule\Factory\CommandBusFactory;
+use TacticianModuleTest\Middleware\CustomMiddleware;
 use Zend\ServiceManager\ServiceManager;
 
 class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
@@ -60,11 +61,9 @@ class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateServiceWithMiddlewarePrioritized()
     {
-        $command = new \stdClass();
-
-        $middlewareStubEarly = new CustomMiddleware('early');
-        $middlewareStubMiddle = new CustomMiddleware('middle');
-        $middlewareStubLast = new CustomMiddleware('last');
+        $middlewareStubEarly = new CustomMiddleware('1');
+        $middlewareStubMiddle = new CustomMiddleware('2');
+        $middlewareStubLast = new CustomMiddleware('3');
 
         $this->serviceLocator->setService('config', [
             'tactician' => [
@@ -81,33 +80,10 @@ class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
         $this->serviceLocator->setService('middleware-last', $middlewareStubLast);
 
         $commandBus = $this->factory->createService($this->serviceLocator);
-        $commandBus->handle($command);
+        $output = $commandBus->handle(new \stdClass());
 
-        $this->assertEquals(['early', 'middle', 'last'], CustomMiddleware::$output);
+        $this->assertEquals('123', $output);
     }
 }
 
-class CustomMiddleware implements Middleware
-{
-    public static $output = [];
-    public $name;
 
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * When executed, just append its name to the output array.
-     * @param object $command
-     * @param callable $next
-     * @return mixed|null
-     */
-    public function execute($command, callable $next)
-    {
-        self::$output[] = $this->name;
-        $next($command);
-
-        return null;
-    }
-}
