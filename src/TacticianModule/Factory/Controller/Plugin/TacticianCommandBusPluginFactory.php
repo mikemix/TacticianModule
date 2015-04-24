@@ -3,6 +3,7 @@ namespace TacticianModule\Factory\Controller\Plugin;
 
 use League\Tactician\CommandBus;
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
+use Zend\Mvc\Controller\PluginManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -11,13 +12,13 @@ class TacticianCommandBusPluginFactory implements FactoryInterface
     /**
      * Create service
      *
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface|PluginManager $pm
      * @return TacticianCommandBusPlugin
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $pm)
     {
         /** @var CommandBus $commandBus */
-        $commandBus = $serviceLocator->get(CommandBus::class);
+        $commandBus = $pm->getServiceLocator()->get(CommandBus::class);
 
         return new TacticianCommandBusPlugin($commandBus);
     }
