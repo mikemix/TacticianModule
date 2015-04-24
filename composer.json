@@ -1,5 +1,5 @@
 {
-  "name": "mikemix/tactician-module",
+  "name": "geeh/tactician-module",
   "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
   "require": {
     "zendframework/zend-servicemanager": "~2",
