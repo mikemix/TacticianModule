@@ -11,7 +11,9 @@ class MyController extends AbstractActionController
     public function indexAction()
     {
         $command = new UserLoginCommand();
-        $this->tacticianCommandBus()->execute($command);
+        $command->login = 'crazylogin';
+        
+        $this->tacticianCommandBus($command);
     }
 }
 ```
