@@ -4,7 +4,6 @@
   "require": {
     "zendframework/zend-servicemanager": "~2",
     "zendframework/zend-mvc": "~2",
-    "zendframework/zend-stdlib": "~2",
     "league/tactician": "0.*",
     "php": ">=5.5"
   },
