@@ -28,8 +28,8 @@ class CommandBusFactory implements FactoryInterface
             return new CommandBus([$serviceLocator->get($serviceName)]);
         }
 
-		arsort($configMiddleware);
-		
+        arsort($configMiddleware);
+        
         $middleware = [];
         foreach ($configMiddleware as $serviceName => $priority) {
             $middleware[] = $serviceLocator->get($serviceName);
