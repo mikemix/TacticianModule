@@ -5,8 +5,10 @@
 
 The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. 
  
-```
+```php
+
 // real life example
+// imports skipped for brevity
 
 class LoginController extends AbstractActionController
 {
@@ -40,7 +42,8 @@ class LoginController extends AbstractActionController
 
 If you need to inject the command bus into your service layer or similar, then simply grab from the __Service Manager__ using the FQCN of the `CommandBus`.
 
-```
+```php
+<?php
 namespace MyNamespace;
 
 use League\Tactician\CommandBus;
@@ -67,7 +70,7 @@ class Module.php
 
 The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `HandlerInflector` configured as default. If you wish to override the default locator or default command bus implementations, then simply use the `tactician` key in the merged config.
 
-```
+```php
 'tactician' => [
     'default-extractor'  => ClassNameExtractor::class,
     'default-locator'    => ZendLocator::class,
@@ -85,7 +88,7 @@ The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `Ha
 
 To add custom middleware to the middleware stack, add it to the `middleware` array as `ServiceName` => `priority` in which the middleware are supposed to be executed (higher the number, earlier it will execute). For example
 
-```
+```php
 // ... your module config
 'tactician' => [
     'middleware'         => [
