@@ -6,14 +6,34 @@
 The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. 
  
 ```
-class MyController extends AbstractActionController
+// real life example
+
+class LoginController extends AbstractActionController
 {
+    /** @var LoginForm */
+    protected $form;
+
+    // constructor code skipped for brevity
+
     public function indexAction()
     {
-        $command = new UserLoginCommand();
-        $command->login = 'crazylogin';
+        if ($this->request->isPost()) {
+            $this->form->setData($this->request->getPost());
+            if ($this->form->isValid()) {
+                $command = new UserLoggedCommand();
+                $command->login = $this->form->getLogin();
+                $command->password = $this->form->getPassword();
+                
+                $this->tacticianCommandBus($command);
+                return $this->redirect()->toRoute('home');
+            }
+        }
+    
+        $view = new ViewModel();
+        $view->setVariable('form', $this->form);
+        $view->setTemplate('app/login/index');
         
-        $this->tacticianCommandBus($command);
+        return $view;
     }
 }
 ```
@@ -50,7 +70,7 @@ The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `Ha
 ```
 'tactician' => [
     'default-extractor'  => ClassNameExtractor::class,
-    'default-locator'    => InMemoryLocator::class,
+    'default-locator'    => ZendLocator::class,
     'default-inflector'  => HandleInflector::class,
     'handler-map'        => [],
     'middleware'         => [
