@@ -2,6 +2,7 @@
 namespace TacticianModuleTest\Factory;
 
 use TacticianModule\Factory\InMemoryLocatorFactory;
+use League\Tactician\Handler\Locator\InMemoryLocator;
 use Zend\ServiceManager\ServiceManager;
 
 class InMemoryLocatorFactoryTest extends \PHPUnit_Framework_TestCase
@@ -21,9 +22,7 @@ class InMemoryLocatorFactoryTest extends \PHPUnit_Framework_TestCase
         $this->serviceLocator = new ServiceManager();
         $this->serviceLocator->setService('config', [
             'tactician' => [
-                'handler-map' => [
-                    'command' => 'handler',
-                ]
+                'handler-map' => []
             ],
         ]);
 
@@ -34,6 +33,6 @@ class InMemoryLocatorFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $locator = $this->factory->createService($this->serviceLocator);
 
-        $this->assertEquals('handler', $locator->getHandlerForCommand('command'));
+        $this->assertInstanceOf(InMemoryLocator::class, $locator);
     }
 }
