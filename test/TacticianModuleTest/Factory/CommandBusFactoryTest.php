@@ -33,7 +33,7 @@ class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CommandBus::class, $this->factory->createService($this->serviceLocator));
     }
 
-    public function testCreateServiceWithOnlyOneMiddleware()
+    public function testCreateServiceWithOneMiddleware()
     {
         $command = new \stdClass();
 

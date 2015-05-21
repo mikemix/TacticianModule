@@ -2,6 +2,7 @@
 namespace TacticianModule\Factory;
 
 use League\Tactician\CommandBus;
+use League\Tactician\Middleware;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\PriorityList;
@@ -23,18 +24,15 @@ class CommandBusFactory implements FactoryInterface
             return new CommandBus([]);
         }
 
-        if ($middlewareCount == 1) {
-            $serviceName = key($configMiddleware);
-            return new CommandBus([$serviceLocator->get($serviceName)]);
-        }
-
         arsort($configMiddleware);
         
-        $middleware = [];
+        $list = [];
         foreach ($configMiddleware as $serviceName => $priority) {
-            $middleware[] = $serviceLocator->get($serviceName);
+            /** @var Middleware $middleware */
+            $middleware = $serviceLocator->get($serviceName);
+            $list[] = $middleware;
         }
 
-        return new CommandBus($middleware);
+        return new CommandBus($list);
     }
 }
