@@ -1,6 +1,8 @@
 # Tactician ZF2 Module
 ## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF2 applications.
 
+![Travis build](https://api.travis-ci.org/mikemix/TacticianModule.svg)
+
 ### Using
 
 The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. 
