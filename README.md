@@ -116,3 +116,19 @@ To add custom middleware to the middleware stack, add it to the `middleware` arr
 ],
 ```
 
+### Basic usage
+
+Basicly, all you probably will want to do, is to define the `handler-map` array in your module's configuration. For example:
+
+```php
+// module.config.php file
+
+    return [
+        // other keys
+        'tactician' => [
+            'handler-map' => [
+                App\Command\SomeCommand::class => App\Command\SomeCommandHandler::class,
+            ],
+        ],
+    ];
+```
