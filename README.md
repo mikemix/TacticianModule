@@ -8,15 +8,10 @@ The module presents a __Controller Plugin__ called `tacticianCommandBus()` for e
 ```php
 
 // real life example
-// imports skipped for brevity
+// namespaces, imports, class properties skipped for brevity
 
 class LoginController extends AbstractActionController
 {
-    /** @var LoginForm */
-    protected $form;
-
-    // constructor code skipped for brevity
-
     public function indexAction()
     {
         if ($this->request->isPost()) {
@@ -56,9 +51,6 @@ final class UserLoggedCommand
 
 final class UserLoggedHandler
 {
-    /**
-     * @return bool User did login in or not
-     */
     public function handle(UserLoggedCommand $command)
     {
         return $this->authenticationService->login($command->username, $command->password);
