@@ -1,4 +1,4 @@
-# Tactician ZF2 Module ![Travis build](https://api.travis-ci.org/mikemix/TacticianModule.svg)
+# Tactician ZF2 Module ![Travis build](https://api.travis-ci.org/mikemix/TacticianModule.svg) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master)
 ## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF2 applications.
 
 ### Using
