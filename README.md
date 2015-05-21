@@ -21,13 +21,19 @@ class LoginController extends AbstractActionController
     {
         if ($this->request->isPost()) {
             $this->form->setData($this->request->getPost());
+            
             if ($this->form->isValid()) {
-                $command = new UserLoggedCommand();
-                $command->login = $this->form->getLogin();
-                $command->password = $this->form->getPassword();
+                $command = new UserLoggedCommand(
+                    $this->form->getLogin(),
+                    $this->form->getPassword()
+                ));
                 
-                $this->tacticianCommandBus($command);
-                return $this->redirect()->toRoute('home');
+                if ($this->tacticianCommandBus($command) {
+                    return $this->redirect()->toRoute('home');
+                } else {
+                    $this->flashMessenger()->addErrorMessage('Invalid username or password');
+                    return $this->redirect()->refresh();
+                }
             }
         }
     
@@ -36,6 +42,26 @@ class LoginController extends AbstractActionController
         $view->setTemplate('app/login/index');
         
         return $view;
+    }
+}
+
+final class UserLoggedCommand
+{
+    public function __construct($login, $password)
+    {
+        $this->login = $login;
+        $this->password = $password;
+    }
+}
+
+final class UserLoggedHandler
+{
+    /**
+     * @return bool User did login in or not
+     */
+    public function handle(UserLoggedCommand $command)
+    {
+        return $this->authenticationService->login($command->username, $command->password);
     }
 }
 ```
