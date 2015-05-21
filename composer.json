@@ -1,5 +1,5 @@
 {
-  "name": "geeh/tactician-module",
+  "name": "mikemix/tactician-module",
   "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
   "require": {
     "zendframework/zend-mvc": "~2",
@@ -17,10 +17,6 @@
     {
       "name": "Michal Zukowski",
       "email": "support@phpcontext.com"
-    },
-    {
-      "name": "Gary Hockin",
-      "email": "gary@hock.in"
     }
   ],
   "minimum-stability": "dev",
