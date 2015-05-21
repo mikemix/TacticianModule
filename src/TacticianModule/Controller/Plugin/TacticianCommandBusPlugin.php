@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by Gary Hockin.
- * Date: 13/01/15
- * @GeeH
- */
-
 namespace TacticianModule\Controller\Plugin;
 
 use League\Tactician\CommandBus;
