@@ -127,7 +127,7 @@ Basicly, all you probably will want to do, is to define the `handler-map` array 
         // other keys
         'tactician' => [
             'handler-map' => [
-                App\Command\SomeCommand::class => App\Command\SomeCommandHandler::class,
+                App\Command\SomeCommand::class => App\Handler\SomeCommandHandler::class,
             ],
         ],
     ];
