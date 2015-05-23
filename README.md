@@ -18,7 +18,7 @@ class LoginController extends AbstractActionController
             $this->form->setData($this->request->getPost());
             
             if ($this->form->isValid()) {
-                $command = new UserLoggedCommand(
+                $command = new UserLoginCommand(
                     $this->form->getLogin(),
                     $this->form->getPassword()
                 ));
@@ -40,7 +40,7 @@ class LoginController extends AbstractActionController
     }
 }
 
-final class UserLoggedCommand
+final class UserLoginCommand
 {
     public function __construct($login, $password)
     {
@@ -49,9 +49,9 @@ final class UserLoggedCommand
     }
 }
 
-final class UserLoggedHandler
+final class UserLoginHandler
 {
-    public function handle(UserLoggedCommand $command)
+    public function handle(UserLoginCommand $command)
     {
         return $this->authenticationService->login($command->username, $command->password);
     }
