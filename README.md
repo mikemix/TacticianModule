@@ -23,7 +23,9 @@ class LoginController extends AbstractActionController
                     $this->form->getPassword()
                 ));
                 
-                if ($this->tacticianCommandBus($command) {
+                if ($this->tacticianCommandBus($command)) {
+                    // if handler returned true
+                    // user was logged in successfully
                     return $this->redirect()->toRoute('home');
                 } else {
                     $this->flashMessenger()->addErrorMessage('Invalid username or password');
