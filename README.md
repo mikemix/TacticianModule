@@ -1,6 +1,25 @@
 # Tactician ZF2 Module ![Travis build](https://api.travis-ci.org/mikemix/TacticianModule.svg) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master)
 ## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF2 applications.
 
+### Installation with Composer
+
+Install with Composer.
+
+```js
+    "require": {
+        "mikemix/tactician-module": "^1.0"
+    }
+```
+
+### Register as ZF2 module inside your ```config/application.config.php``` file:
+
+```php
+    'modules' => [
+        'YourApplicationModule',
+        'TacticianModule',
+    ],
+```
+
 ### Using
 
 The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. 
