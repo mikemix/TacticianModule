@@ -22,12 +22,12 @@ Install with Composer.
 
 ### Using
 
-The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. 
+The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. You can type hint this plugin in your controller, for example: ```@method mixed tacticianCommandBus(object $command)```.
  
 ```php
 
-// real life example
-// namespaces, imports, class properties skipped for brevity
+// Real life example.
+// Namespaces, imports, class properties skipped for brevity
 
 class LoginController extends AbstractActionController
 {
