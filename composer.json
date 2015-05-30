@@ -1,6 +1,6 @@
 {
   "name": "mikemix/tactician-module",
-  "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library",
+  "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
   "require": {
     "zendframework/zend-mvc": "~2",
     "league/tactician": "0.*",
