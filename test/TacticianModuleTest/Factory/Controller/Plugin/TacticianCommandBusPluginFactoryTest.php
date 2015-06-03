@@ -6,36 +6,53 @@ use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\ServiceManager\ServiceManager;
+use Zend\ServiceManager\AbstractPluginManager;
 
 class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateService()
+    public function testCreateServiceWithAbstractPluginManager()
     {
-        $commandBusStub = $this->getMockBuilder(CommandBus::class)
+        $commandBus = $this->getMockBuilder(CommandBus::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        /** @var ServiceManager|\PHPUnit_Framework_MockObject_MockObject $serviceLocator */
-        $serviceLocator = $this->getMockBuilder(ServiceManager::class)
+        /** @var ServiceManager|\PHPUnit_Framework_MockObject_MockObject $sm */
+        $sm = $this->getMockBuilder(ServiceManager::class)
             ->setMethods(['get'])
             ->getMock();
 
-        $serviceLocator->expects($this->atLeastOnce())
+        $sm->expects($this->once())
             ->method('get')
             ->with($this->equalTo(CommandBus::class))
-            ->will($this->returnValue($commandBusStub));
+            ->will($this->returnValue($commandBus));
 
-        /** @var PluginManager|\PHPUnit_Framework_MockObject_MockObject $pluginManager */
-        $pluginManager = $this->getMockBuilder(PluginManager::class)
+        /** @var AbstractPluginManager|\PHPUnit_Framework_MockObject_MockObject $pluginManager */
+        $pluginManager = $this->getMockBuilder(AbstractPluginManager::class)
             ->setMethods(['getServiceLocator'])
-            ->getMock();
+            ->getMockForAbstractClass();
 
-        $pluginManager->expects($this->atLeastOnce())
+        $pluginManager->expects($this->once())
             ->method('getServiceLocator')
-            ->will($this->returnValue($serviceLocator));
-
+            ->will($this->returnValue($sm));
 
         $factory = new TacticianCommandBusPluginFactory();
         $this->assertInstanceOf(TacticianCommandBusPlugin::class, $factory->createService($pluginManager));
+    }
+
+    public function testCreateServiceWithServiceManager()
+    {
+        $commandBus = $this->getMockBuilder(CommandBus::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        /** @var ServiceManager|\PHPUnit_Framework_MockObject_MockObject $sm */
+        $sm = $this->getMock(ServiceManager::class, ['get']);
+        $sm->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo(CommandBus::class))
+            ->will($this->returnValue($commandBus));
+
+        $factory = new TacticianCommandBusPluginFactory();
+        $this->assertInstanceOf(TacticianCommandBusPlugin::class, $factory->createService($sm));
     }
 }
