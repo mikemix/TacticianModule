@@ -24,7 +24,7 @@ Install with Composer.
 ### Using
 
 The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. You can type hint this plugin in your controller, for example: ```@method mixed tacticianCommandBus(object $command)```.
- 
+
 ```php
 
 // Real life example.
@@ -36,13 +36,13 @@ class LoginController extends AbstractActionController
     {
         if ($this->request->isPost()) {
             $this->form->setData($this->request->getPost());
-            
+
             if ($this->form->isValid()) {
                 $command = new UserLoginCommand(
                     $this->form->getLogin(),
                     $this->form->getPassword()
                 ));
-                
+
                 if ($this->tacticianCommandBus($command)) {
                     // if handler returned true
                     // user was logged in successfully
@@ -53,11 +53,11 @@ class LoginController extends AbstractActionController
                 }
             }
         }
-    
+
         $view = new ViewModel();
         $view->setVariable('form', $this->form);
         $view->setTemplate('app/login/index');
-        
+
         return $view;
     }
 }
@@ -90,7 +90,7 @@ use League\Tactician\CommandBus;
 use Zend\ServiceManager\ServiceManager;
 use MyNamespace\Service\MyService;
 
-class Module.php
+class Module
 {
     public function getServiceConfig()
     {
