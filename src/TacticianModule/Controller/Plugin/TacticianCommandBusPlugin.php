@@ -18,7 +18,7 @@ class TacticianCommandBusPlugin extends AbstractPlugin
 
     public function __invoke($command = null)
     {
-        if (! $command) {
+        if (!$command) {
             return $this->commandBus;
         }
         

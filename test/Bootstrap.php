@@ -5,7 +5,7 @@ chdir(dirname(__DIR__));
 /** @var Composer\Autoload\ClassLoader $loader */
 $loader = require 'vendor/autoload.php';
 
-if (! $loader) {
+if (!$loader) {
     throw new Exception('No Autoloading setup');
 }
 
