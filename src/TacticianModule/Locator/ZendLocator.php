@@ -24,7 +24,7 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
     {
         $handlerMap = $this->getServiceLocator()->get('config')['tactician']['handler-map'];
 
-        if (! isset($handlerMap[$commandName])) {
+        if (!isset($handlerMap[$commandName])) {
             throw MissingHandlerException::forCommand($commandName);
         }
 
