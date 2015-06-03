@@ -31,16 +31,17 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
         $serviceNameOrFQCN = $handlerMap[$commandName];
 
         try {
-            /** @var object $handler */
             $handler = $this->getServiceLocator()->get($serviceNameOrFQCN);
-            
-            return $handler;
-        } catch (ServiceNotFoundException $e) {
-            if (class_exists($serviceNameOrFQCN)) {
-                return new $serviceNameOrFQCN();
+            if (is_object($handler)) {
+                return $handler;
             }
-
-            throw MissingHandlerException::forCommand($commandName);
+        } catch (ServiceNotFoundException $e) {
         }
+
+        if (class_exists($serviceNameOrFQCN)) {
+            return new $serviceNameOrFQCN();
+        }
+
+        throw MissingHandlerException::forCommand($commandName);
     }
 }
