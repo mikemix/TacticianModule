@@ -1,10 +1,11 @@
 filter:
-    excluded_paths: [vendor/*, config/*]
+    excluded_paths: [vendor/*, config/*, test/*]
 
 checks:
     php:
         code_rating: true
         duplication: true
+        remove_extra_empty_lines: true
 
 build:
     tests:
