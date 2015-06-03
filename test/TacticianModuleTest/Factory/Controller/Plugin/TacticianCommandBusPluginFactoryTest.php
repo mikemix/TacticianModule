@@ -4,7 +4,6 @@ namespace TacticianModuleTest\Factory\Controller\Plugin;
 use League\Tactician\CommandBus;
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
-use Zend\Mvc\Controller\PluginManager;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\AbstractPluginManager;
 
