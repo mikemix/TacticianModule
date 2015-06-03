@@ -16,7 +16,13 @@
   "authors": [
     {
       "name": "Michal Zukowski",
-      "email": "support@phpcontext.com"
+      "homepage": "https://www.phpcontext.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Gary Hockin",
+      "homepage": "http://hock.in",
+      "role": "Trailblazer"
     }
   ],
   "autoload": {
