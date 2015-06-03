@@ -12,6 +12,7 @@ class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateServiceWithAbstractPluginManager()
     {
+        /** @var CommandBus|\PHPUnit_Framework_MockObject_MockObject $commandBus */
         $commandBus = $this->getMockBuilder(CommandBus::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -41,6 +42,7 @@ class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateServiceWithServiceManager()
     {
+        /** @var CommandBus|\PHPUnit_Framework_MockObject_MockObject $commandBus */
         $commandBus = $this->getMockBuilder(CommandBus::class)
             ->disableOriginalConstructor()
             ->getMock();
