@@ -36,6 +36,8 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
                 return $handler;
             }
         } catch (ServiceNotFoundException $e) {
+            // Further check exists for class availability.
+            // If not, Exception will be thrown anyway.
         }
 
         if (class_exists($serviceNameOrFQCN)) {
