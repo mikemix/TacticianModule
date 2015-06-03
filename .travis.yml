@@ -12,9 +12,16 @@ before_script:
 script:
   - ./vendor/bin/phpunit --disallow-test-output --report-useless-tests --coverage-clover ./clover.xml --group=Coverage ./test/
   - ./vendor/bin/phpunit --disallow-test-output --report-useless-tests --strict --exclude-group=Performance,Coverage ./test/
-  - php -n ./vendor/bin/phpunit --group=Performance
   - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./test/
 
 matrix:
   allow_failures:
     - php: hhvm
+
+build:
+    tests:
+        override:
+            -
+                coverage:
+                    file: 'clover.xml'
+                    format: 'php-clover'
