@@ -8,7 +8,7 @@ Install with Composer.
 
 ```js
     "require": {
-        "mikemix/tactician-module": "^1.0"
+        "mikemix/tactician-module": "~1.0"
     }
 ```
 
