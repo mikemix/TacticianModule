@@ -107,4 +107,25 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('command');
     }
+
+    public function testGetHandlerForCommandShouldReturnValidHandler()
+    {
+        $this->serviceLocator->expects($this->at(0))
+            ->method('get')
+            ->with($this->equalTo('config'))
+            ->will($this->returnValue([
+                'tactician' => [
+                    'handler-map' => [
+                        'command' => \stdClass::class,
+                    ]
+                ],
+            ]));
+
+        $this->serviceLocator->expects($this->at(1))
+            ->method('get')
+            ->with($this->equalTo(\stdClass::class))
+            ->will($this->returnValue(new \stdClass()));
+
+        $this->assertEquals(new \stdClass(), $this->locator->getHandlerForCommand('command'));
+    }
 }
