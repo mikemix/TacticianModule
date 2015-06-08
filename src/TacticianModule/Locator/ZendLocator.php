@@ -16,7 +16,7 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
      *
      * @param string $commandName
      *
-     * @return object
+     * @return mixed
      *
      * @throws MissingHandlerException
      */
