@@ -23,7 +23,9 @@ Install with Composer.
 
 ### Using
 
-The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. You can type hint this plugin in your controller, for example: ```@method mixed tacticianCommandBus(object $command)```.
+The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. If no command object is passed to it, the CommandBus object will be returned. If you pass the command however, it will be passed over to the CommandBus and handled, and the output from the handler will be returned.
+
+You can type hint this plugin in your controller, for example: ```@method \League\Tactician\CommandBus|mixed tacticianCommandBus(object $command)```.
 
 ```php
 
