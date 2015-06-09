@@ -15,3 +15,7 @@ build:
                 coverage:
                     file: 'clover.xml'
                     format: 'php-clover'
+
+tools:
+    external_code_coverage:
+        timeout: 600
