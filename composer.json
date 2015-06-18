@@ -35,6 +35,6 @@
     "humbug/humbug": "*@dev"
   },
   "suggests": {
-    "mikemix/mxdiModule": "To configure dependency injection in Zend Framework 2 using annotations"
+    "mikemix/mxdi-module": "To configure dependency injection in Zend Framework 2 using annotations"
   }
 }
