@@ -1,5 +1,4 @@
-vendor
-composer.lock
+/vendor
+/.idea
 composer.phar
-.idea
 humbuglog.txt
