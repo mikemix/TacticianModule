@@ -4,16 +4,17 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - nightly
   - hhvm
-
-before_script:
-  - sh .travis.install.sh
-
-script:
-  - ./vendor/bin/phpunit --disallow-test-output --report-useless-tests --coverage-clover ./clover.xml --group=Coverage ./test/
-  - ./vendor/bin/phpunit --disallow-test-output --report-useless-tests --strict --exclude-group=Performance,Coverage ./test/
-  - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./test/
 
 matrix:
   allow_failures:
+    - php: nightly
     - php: hhvm
+
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+
+script:
+  - phpunit
