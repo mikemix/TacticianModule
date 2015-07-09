@@ -11,6 +11,9 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
 {
     use ServiceLocatorAwareTrait;
 
+    /** @var array */
+    protected $handlerMap;
+
     /**
      * Retrieves the handler for a specified command
      *
@@ -22,13 +25,11 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
      */
     public function getHandlerForCommand($commandName)
     {
-        $handlerMap = $this->getServiceLocator()->get('config')['tactician']['handler-map'];
-
-        if (!isset($handlerMap[$commandName])) {
+        if (!$this->commandExists($commandName)) {
             throw MissingHandlerException::forCommand($commandName);
         }
 
-        $serviceNameOrFQCN = $handlerMap[$commandName];
+        $serviceNameOrFQCN = $this->handlerMap[$commandName];
 
         try {
             return $this->getServiceLocator()->get($serviceNameOrFQCN);
@@ -42,5 +43,18 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
         }
 
         throw MissingHandlerException::forCommand($commandName);
+    }
+
+    /**
+     * @param string $commandName
+     * @return bool
+     */
+    protected function commandExists($commandName)
+    {
+        if (!$this->handlerMap) {
+            $this->handlerMap = $this->getServiceLocator()->get('config')['tactician']['handler-map'];
+        }
+
+        return isset($this->handlerMap[$commandName]);
     }
 }
