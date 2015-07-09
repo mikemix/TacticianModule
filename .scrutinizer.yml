@@ -1,5 +1,8 @@
 filter:
-    excluded_paths: [vendor/* config/* test/*]
+    excluded_paths:
+        - vendor/*
+        - config/*
+        - test/*
 
 checks:
     php:
