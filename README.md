@@ -159,9 +159,9 @@ Basicly, all you probably will want to do, is to define the `handler-map` array 
 
 ### ClassnameZendLocator
 
-This locator simply appends the word `Handler` to the command's FQCN so no you don't have to define any handler map. For example, if you request command `App\Commands\LoginCommand`, locator will try to fetch `App\Command\LoginCommandHandler` from the Service Manager.
+This locator simply appends the word `Handler` to the command's FQCN so you don't have to define any handler map. For example, if you request command `App\Commands\LoginCommand`, locator will try to get `App\Command\LoginCommandHandler` from the Service Manager.
 
-Locator will work with FQCN's not registered in the Service Manager, altough to prevent additional costly checks, make sure your locator is registered as a invokable or factory.
+Locator will work with FQCN's not registered in the Service Manager, altough to prevent additional costly checks, make sure the locator is registered as a invokable or factory.
 
 To change the locator from ZendLocator to ClassnameZendLocator simply set it in the config:
 
