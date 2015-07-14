@@ -167,7 +167,6 @@ To change the locator from ZendLocator to ClassnameZendLocator simply set it in 
 
 ```php
 // ... your module config
-```php
 'tactician' => [
     'default-locator' => TacticianModule\Locator\ClassnameZendLocator::class,
 ],
