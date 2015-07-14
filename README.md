@@ -112,9 +112,9 @@ The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `Ha
 
 ```php
 'tactician' => [
-    'default-extractor'  => ClassNameExtractor::class,
-    'default-locator'    => ZendLocator::class,
-    'default-inflector'  => HandleInflector::class,
+    'default-extractor'  => League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor::class,
+    'default-locator'    => TacticianModule\Locator\ZendLocator::class,
+    'default-inflector'  => League\Tactician\Handler\HandleInflector::class,
     'handler-map'        => [],
     'middleware'         => [
         CommandHandlerMiddleware::class => 0,
@@ -162,3 +162,13 @@ Basicly, all you probably will want to do, is to define the `handler-map` array 
 This locator simply appends the word `Handler` to the command's FQCN so no you don't have to define any handler map. For example, if you request command `App\Commands\LoginCommand`, locator will try to fetch `App\Command\LoginCommandHandler` from the Service Manager.
 
 Locator will work with FQCN's not registered in the Service Manager, altough to prevent additional costly checks, make sure your locator is registered as a invokable or factory.
+
+To change the locator from ZendLocator to ClassnameZendLocator simply set it in the config:
+
+```php
+// ... your module config
+```php
+'tactician' => [
+    'default-locator' => TacticianModule\Locator\ClassnameZendLocator::class,
+],
+```
