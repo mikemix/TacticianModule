@@ -4,15 +4,11 @@
 
 ## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF2 applications.
 
-### Installation with Composer
+### Installation
 
-Install with Composer.
+Best install with Composer:
 
-```js
-    "require": {
-        "mikemix/tactician-module": "~1.0"
-    }
-```
+`php composer.phar require mikemix/tactician-module:~1.0`
 
 ### Register as ZF2 module inside your ```config/application.config.php``` file:
 
