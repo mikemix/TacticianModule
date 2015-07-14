@@ -10,3 +10,4 @@ if (!$loader) {
 }
 
 $loader->add('TacticianModuleTest\\', __DIR__);
+$loader->add('TestObjects\\', __DIR__);
