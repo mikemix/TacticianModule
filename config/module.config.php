@@ -9,14 +9,16 @@ use TacticianModule\Factory\CommandBusFactory;
 use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
 use TacticianModule\Factory\InMemoryLocatorFactory;
+use TacticianModule\Locator\ClassnameZendLocator;
 use TacticianModule\Locator\ZendLocator;
 
 return [
     'service_manager' => [
         'invokables' => [
-            ClassNameExtractor::class => ClassNameExtractor::class,
-            HandleInflector::class => HandleInflector::class,
-            ZendLocator::class => ZendLocator::class,
+            ClassNameExtractor::class   => ClassNameExtractor::class,
+            HandleInflector::class      => HandleInflector::class,
+            ClassnameZendLocator::class => ClassnameZendLocator::class,
+            ZendLocator::class          => ZendLocator::class,
         ],
         'factories' => [
             CommandBus::class => CommandBusFactory::class,
