@@ -2,7 +2,7 @@
   "name": "mikemix/tactician-module",
   "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
   "require": {
-    "league/tactician": "~0.6",
+    "league/tactician": "~1.0",
     "php": ">=5.5"
   },
   "require-dev": {
