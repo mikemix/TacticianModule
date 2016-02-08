@@ -43,12 +43,11 @@ class LoginController extends AbstractActionController
                     $this->form->getPassword()
                 ));
 
-                if ($this->tacticianCommandBus($command)) {
-                    // if handler returned true
-                    // user was logged in successfully
+                try {
+                    $this->tacticianCommandBus($command);
                     return $this->redirect()->toRoute('home');
-                } else {
-                    $this->flashMessenger()->addErrorMessage('Invalid username or password');
+                } catch (\Some\Kind\Of\Login\Failure $exception) {
+                    $this->flashMessenger()->addErrorMessage($exception->getMessage());
                     return $this->redirect()->refresh();
                 }
             }
@@ -73,9 +72,11 @@ final class UserLoginCommand
 
 final class UserLoginHandler
 {
+    // constructor skipped for brevity
+
     public function handle(UserLoginCommand $command)
     {
-        return $this->authenticationService->login($command->username, $command->password);
+        $this->authenticationService->login($command->username, $command->password);
     }
 }
 ```
