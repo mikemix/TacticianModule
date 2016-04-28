@@ -8,7 +8,7 @@
 
 Best install with Composer:
 
-`php composer.phar require mikemix/tactician-module:~1.0`
+`composer require mikemix/tactician-module`
 
 ### Register as ZF2 module inside your ```config/application.config.php``` file:
 
