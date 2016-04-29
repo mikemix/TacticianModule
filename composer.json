@@ -3,7 +3,8 @@
   "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
   "require": {
     "league/tactician": "^1.0",
-    "zendframework/zend-mvc": ">=2.2 <2.7"
+    "zendframework/zend-mvc": "^2.4",
+    "zendframework/zend-servicemanager": "^2.4"
   },
   "keywords": [
     "zend framework",
