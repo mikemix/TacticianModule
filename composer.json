@@ -6,6 +6,9 @@
     "zendframework/zend-mvc": "^2.4",
     "zendframework/zend-servicemanager": "^2.4"
   },
+  "require-dev": {
+    "league/tactician-doctrine": "^1.0"
+  },
   "keywords": [
     "zend framework",
     "zf2",

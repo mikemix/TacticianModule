@@ -1,6 +1,7 @@
 <?php
 
 use League\Tactician\CommandBus;
+use League\Tactician\Doctrine\ORM\TransactionMiddleware;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\Locator\InMemoryLocator;
@@ -9,6 +10,7 @@ use League\Tactician\Plugins\LockingMiddleware;
 use TacticianModule\Factory\CommandBusFactory;
 use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
+use TacticianModule\Factory\Plugin\DoctrineTransactionFactory;
 use TacticianModule\Factory\InMemoryLocatorFactory;
 use TacticianModule\Locator\ClassnameZendLocator;
 use TacticianModule\Locator\ZendLocator;
@@ -23,9 +25,10 @@ return [
             LockingMiddleware::class    => LockingMiddleware::class,
         ],
         'factories' => [
-            CommandBus::class => CommandBusFactory::class,
+            CommandBus::class               => CommandBusFactory::class,
             CommandHandlerMiddleware::class => CommandHandlerMiddlewareFactory::class,
-            InMemoryLocator::class => InMemoryLocatorFactory::class,
+            InMemoryLocator::class          => InMemoryLocatorFactory::class,
+            TransactionMiddleware::class    => DoctrineTransactionFactory::class,
         ],
     ],
     'controller_plugins' => [
@@ -38,6 +41,9 @@ return [
         'default-locator'    => ZendLocator::class,
         'default-inflector'  => HandleInflector::class,
         'handler-map'        => [],
+        'plugins'            => [
+            TransactionMiddleware::class => 'Doctrine\ORM\EntityManager',
+        ],
         'middleware'         => [
             CommandHandlerMiddleware::class => 0,
         ],
