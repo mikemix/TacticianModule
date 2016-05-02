@@ -20,12 +20,8 @@ class CommandBusFactory implements FactoryInterface
         $configMiddleware = $serviceLocator->get('config')['tactician']['middleware'];
         $middlewareCount = count($configMiddleware);
 
-        if ($middlewareCount == 0) {
-            return new CommandBus([]);
-        }
-
         arsort($configMiddleware);
-        
+
         $list = [];
         foreach ($configMiddleware as $serviceName => $priority) {
             /** @var Middleware $middleware */

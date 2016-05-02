@@ -22,17 +22,6 @@ class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
         $this->factory = new CommandBusFactory();
     }
 
-    public function testCreateServiceWithNoMiddleware()
-    {
-        $this->serviceLocator->setService('config', [
-            'tactician' => [
-                'middleware' => []
-            ]
-        ]);
-
-        $this->assertInstanceOf(CommandBus::class, $this->factory->createService($this->serviceLocator));
-    }
-
     public function testCreateServiceWithOneMiddleware()
     {
         $command = new \stdClass();
