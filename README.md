@@ -156,9 +156,49 @@ Basicly, all you probably will want to do, is to define the `handler-map` array 
     ];
 ```
 
+### Plugins
+
+#### LockingMiddleware
+
+The [LockingMiddleware](http://tactician.thephpleague.com/plugins/locking-middleware/) can now be used out of the box.
+Simply add the `League\Tactician\Plugins\LockingMiddleware` FQCN to the TacticianModule's middleware configuration with
+appropriate priority. You probably want to execute it before the `CommandHandlerMiddleware`:
+
+```php
+// module.config.php file
+
+    return [
+        // other keys
+        'tactician' => [
+            'middleware' => [
+                \League\Tactician\Plugins\LockingMiddleware::class => 500,
+            ],
+        ],
+    ];
+```
+
+#### TransactionMiddleware
+
+The [TransactionMiddleware](http://tactician.thephpleague.com/plugins/doctrine/) can now be used out of the box.
+Simply add the `League\Tactician\Doctrine\ORM\TransactionMiddleware` FQCN to the TacticianModule's middleware configuration with
+appropriate priority. You probably want to execute it before the `CommandHandlerMiddleware` and after the `LockingMiddleware`:
+
+```php
+// module.config.php file
+
+    return [
+        // other keys
+        'tactician' => [
+            'middleware' => [
+                \League\Tactician\Doctrine\ORM\TransactionMiddleware::class => 250,
+            ],
+        ],
+    ];
+```
+
 ### Changing the Handler Locator
 
-### ClassnameZendLocator
+#### ClassnameZendLocator
 
 This locator simply appends the word `Handler` to the command's FQCN so you don't have to define any handler map. For example, if you request command `App\Commands\LoginCommand`, locator will try to get `App\Command\LoginCommandHandler` from the Service Manager.
 
