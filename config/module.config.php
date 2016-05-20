@@ -1,7 +1,6 @@
 <?php
 
 use League\Tactician\CommandBus;
-use League\Tactician\Doctrine\ORM\TransactionMiddleware;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\Locator\InMemoryLocator;
@@ -28,7 +27,7 @@ return [
             CommandBus::class               => CommandBusFactory::class,
             CommandHandlerMiddleware::class => CommandHandlerMiddlewareFactory::class,
             InMemoryLocator::class          => InMemoryLocatorFactory::class,
-            TransactionMiddleware::class    => DoctrineTransactionFactory::class,
+            'League\Tactician\Doctrine\ORM\TransactionMiddleware' => DoctrineTransactionFactory::class,
         ],
     ],
     'controller_plugins' => [
@@ -42,7 +41,7 @@ return [
         'default-inflector'  => HandleInflector::class,
         'handler-map'        => [],
         'plugins'            => [
-            TransactionMiddleware::class => 'Doctrine\ORM\EntityManager',
+            'League\Tactician\Doctrine\ORM\TransactionMiddleware' => 'Doctrine\ORM\EntityManager',
         ],
         'middleware'         => [
             CommandHandlerMiddleware::class => 0,
