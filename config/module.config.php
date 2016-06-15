@@ -9,24 +9,26 @@ use League\Tactician\Plugins\LockingMiddleware;
 use TacticianModule\Factory\CommandBusFactory;
 use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
-use TacticianModule\Factory\Plugin\DoctrineTransactionFactory;
 use TacticianModule\Factory\InMemoryLocatorFactory;
+use TacticianModule\Factory\Plugin\DoctrineTransactionFactory;
 use TacticianModule\Locator\ClassnameZendLocator;
+use TacticianModule\Locator\ClassnameZendLocatorFactory;
 use TacticianModule\Locator\ZendLocator;
+use TacticianModule\Locator\ZendLocatorFactory;
 
 return [
     'service_manager' => [
         'invokables' => [
             ClassNameExtractor::class   => ClassNameExtractor::class,
             HandleInflector::class      => HandleInflector::class,
-            ClassnameZendLocator::class => ClassnameZendLocator::class,
-            ZendLocator::class          => ZendLocator::class,
             LockingMiddleware::class    => LockingMiddleware::class,
         ],
         'factories' => [
             CommandBus::class               => CommandBusFactory::class,
             CommandHandlerMiddleware::class => CommandHandlerMiddlewareFactory::class,
             InMemoryLocator::class          => InMemoryLocatorFactory::class,
+            ClassnameZendLocator::class     => ClassnameZendLocatorFactory::class,
+            ZendLocator::class              => ZendLocatorFactory::class,
             'League\Tactician\Doctrine\ORM\TransactionMiddleware' => DoctrineTransactionFactory::class,
         ],
     ],
