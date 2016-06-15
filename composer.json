@@ -8,7 +8,8 @@
     "zendframework/zend-servicemanager": "^2.4"
   },
   "require-dev": {
-    "league/tactician-doctrine": "^1.0"
+    "league/tactician-doctrine": "^1.0",
+    "phpunit/phpunit": "^4.8"
   },
   "keywords": [
     "zend framework",
