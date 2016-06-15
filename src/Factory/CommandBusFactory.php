@@ -5,7 +5,6 @@ use League\Tactician\CommandBus;
 use League\Tactician\Middleware;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Stdlib\PriorityList;
 
 class CommandBusFactory implements FactoryInterface
 {
@@ -18,15 +17,13 @@ class CommandBusFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $configMiddleware = $serviceLocator->get('config')['tactician']['middleware'];
-        $middlewareCount = count($configMiddleware);
 
         arsort($configMiddleware);
 
         $list = [];
-        foreach ($configMiddleware as $serviceName => $priority) {
+        foreach (array_keys($configMiddleware) as $serviceName) {
             /** @var Middleware $middleware */
-            $middleware = $serviceLocator->get($serviceName);
-            $list[] = $middleware;
+            $list[] = $serviceLocator->get($serviceName);
         }
 
         return new CommandBus($list);
