@@ -4,12 +4,16 @@ namespace TacticianModule\Locator;
 use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorAwareTrait;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ClassnameZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
+class ClassnameZendLocator implements HandlerLocator
 {
-    use ServiceLocatorAwareTrait;
+    private $serviceLocator;
+
+    public function __construct(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+    }
 
     /**
      * Retrieves the handler for a specified command
@@ -25,7 +29,7 @@ class ClassnameZendLocator implements HandlerLocator, ServiceLocatorAwareInterfa
         $handlerFQCN = $commandName . 'Handler';
 
         try {
-            return $this->getServiceLocator()->get($handlerFQCN);
+            return $this->serviceLocator->get($handlerFQCN);
         } catch (ServiceNotFoundException $e) {
             // Further check exists for class availability.
             // If not, Exception will be thrown anyway.

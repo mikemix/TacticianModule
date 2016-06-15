@@ -4,15 +4,19 @@ namespace TacticianModule\Locator;
 use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorAwareTrait;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
+class ZendLocator implements HandlerLocator
 {
-    use ServiceLocatorAwareTrait;
-
     /** @var array */
     protected $handlerMap;
+
+    private $serviceLocator;
+
+    public function __construct(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+    }
 
     /**
      * Retrieves the handler for a specified command
@@ -32,7 +36,7 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
         $serviceNameOrFQCN = $this->handlerMap[$commandName];
 
         try {
-            return $this->getServiceLocator()->get($serviceNameOrFQCN);
+            return $this->serviceLocator->get($serviceNameOrFQCN);
         } catch (ServiceNotFoundException $e) {
             // Further check exists for class availability.
             // If not, Exception will be thrown anyway.
@@ -52,7 +56,7 @@ class ZendLocator implements HandlerLocator, ServiceLocatorAwareInterface
     protected function commandExists($commandName)
     {
         if (!$this->handlerMap) {
-            $this->handlerMap = $this->getServiceLocator()->get('config')['tactician']['handler-map'];
+            $this->handlerMap = $this->serviceLocator->get('config')['tactician']['handler-map'];
         }
 
         return isset($this->handlerMap[$commandName]);

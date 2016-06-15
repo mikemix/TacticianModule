@@ -24,8 +24,7 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
             ->setMethods(['get'])
             ->getMockForAbstractClass();
 
-        $this->locator = new ZendLocator();
-        $this->locator->setServiceLocator($this->serviceLocator);
+        $this->locator = new ZendLocator($this->serviceLocator);
     }
 
     public function testGetHandlerForCommandShouldThrowExceptionOnMissingCommandHandler()
