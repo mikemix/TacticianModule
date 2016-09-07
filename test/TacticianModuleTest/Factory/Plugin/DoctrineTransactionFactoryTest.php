@@ -18,7 +18,7 @@ class DoctrineTransactionFactoryTest extends \PHPUnit_Framework_TestCase
         $this->serviceLocator = $this->getMockBuilder(ServiceLocatorInterface::class)
             ->setMethods(['get'])
             ->getMockForAbstractClass();
-                
+
         $this->factory = new DoctrineTransactionFactory();
     }
 
@@ -34,16 +34,19 @@ class DoctrineTransactionFactoryTest extends \PHPUnit_Framework_TestCase
                     ]
                 ],
         ]));
-        
+
         $doctrineStub = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
             ->getMock();
-        
+
         $this->serviceLocator->expects($this->at(1))
             ->method('get')
             ->with($this->equalTo('doctrine.orm.orm_default'))
             ->will($this->returnValue($doctrineStub));
-        
-        $this->assertInstanceOf(TransactionMiddleware::class, $this->factory->createService($this->serviceLocator));
+
+        $this->assertInstanceOf(
+            TransactionMiddleware::class,
+            $this->factory->__invoke($this->serviceLocator, TransactionMiddleware::class)
+        );
     }
 }

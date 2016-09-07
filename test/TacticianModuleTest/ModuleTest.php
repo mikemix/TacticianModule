@@ -20,7 +20,7 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $module = new Module();
         $moduleConfig = $module->getConfig();
 
-        $serviceLocator = new ServiceManager(new Config($moduleConfig['service_manager']));
+        $serviceLocator = new ServiceManager($moduleConfig['service_manager']);
         $serviceLocator->setService('config', $moduleConfig);
 
         $this->assertInstanceOf(CommandBus::class, $serviceLocator->get(CommandBus::class));

@@ -26,17 +26,11 @@ class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(CommandBus::class))
             ->will($this->returnValue($commandBus));
 
-        /** @var AbstractPluginManager|\PHPUnit_Framework_MockObject_MockObject $pluginManager */
-        $pluginManager = $this->getMockBuilder(AbstractPluginManager::class)
-            ->setMethods(['getServiceLocator'])
-            ->getMockForAbstractClass();
-
-        $pluginManager->expects($this->once())
-            ->method('getServiceLocator')
-            ->will($this->returnValue($sm));
-
         $factory = new TacticianCommandBusPluginFactory();
-        $this->assertInstanceOf(TacticianCommandBusPlugin::class, $factory->createService($pluginManager));
+        $this->assertInstanceOf(
+            TacticianCommandBusPlugin::class,
+            $factory($sm, TacticianCommandBusPlugin::class)
+        );
     }
 
     public function testCreateServiceWithServiceManager()
@@ -54,6 +48,9 @@ class TacticianCommandBusPluginFactoryTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($commandBus));
 
         $factory = new TacticianCommandBusPluginFactory();
-        $this->assertInstanceOf(TacticianCommandBusPlugin::class, $factory->createService($sm));
+        $this->assertInstanceOf(
+            TacticianCommandBusPlugin::class,
+            $factory($sm, TacticianCommandBusPlugin::class)
+        );
     }
 }
