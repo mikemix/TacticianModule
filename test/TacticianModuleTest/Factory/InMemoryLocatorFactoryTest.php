@@ -31,7 +31,10 @@ class InMemoryLocatorFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $locator = $this->factory->createService($this->serviceLocator);
+        $locator = $this->factory->__invoke(
+            $this->serviceLocator,
+            InMemoryLocator::class
+        );
 
         $this->assertInstanceOf(InMemoryLocator::class, $locator);
     }

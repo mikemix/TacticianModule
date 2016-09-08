@@ -1,21 +1,23 @@
 <?php
 namespace TacticianModule\Factory;
 
+use Interop\Container\ContainerInterface;
 use League\Tactician\Handler\Locator\InMemoryLocator;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class InMemoryLocatorFactory implements FactoryInterface
 {
     /**
      * Create service
      *
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @param array $options
      * @return InMemoryLocator
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $handlerMap = $serviceLocator->get('config')['tactician']['handler-map'];
+        $handlerMap = $container->get('config')['tactician']['handler-map'];
 
         return new InMemoryLocator($handlerMap);
     }
