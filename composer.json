@@ -1,6 +1,6 @@
 {
   "name": "mikemix/tactician-module",
-  "description": "ZF2 Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
+  "description": "ZF3 Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
   "require": {
     "php": "^5.6 || ^7.0",
     "league/tactician": "^1.0",
@@ -13,9 +13,10 @@
   },
   "keywords": [
     "zend framework",
-    "zf2",
+    "zf3",
     "tactician",
-    "command bus"
+    "command bus",
+    "thephpleague"
   ],
   "license": "MIT",
   "authors": [
