@@ -1,8 +1,8 @@
-# Tactician ZF2 Module
+# Tactician ZF3 Module
 
 [![Build Status](https://travis-ci.org/mikemix/TacticianModule.svg?branch=master)](https://travis-ci.org/mikemix/TacticianModule) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/556b5a106365320026fa4500/badge.svg?style=flat)](https://www.versioneye.com/user/projects/556b5a106365320026fa4500) [![Latest Stable Version](https://poser.pugx.org/mikemix/tactician-module/v/stable)](https://packagist.org/packages/mikemix/tactician-module) [![Total Downloads](https://poser.pugx.org/mikemix/tactician-module/downloads)](https://packagist.org/packages/mikemix/tactician-module) [![License](https://poser.pugx.org/mikemix/tactician-module/license)](https://packagist.org/packages/mikemix/tactician-module)
 
-## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF2 applications.
+## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 applications.
 
 ### Installation
 
@@ -10,7 +10,7 @@ Best install with Composer:
 
 `composer require mikemix/tactician-module`
 
-### Register as ZF2 module inside your ```config/application.config.php``` file:
+### Register as Zend Framework module inside your ```config/application.config.php``` file:
 
 ```php
     'modules' => [
@@ -81,31 +81,7 @@ final class UserLoginHandler
 }
 ```
 
-If you need to inject the command bus into your service layer or similar, then simply grab from the __Service Manager__ using the FQCN of the `CommandBus`.
-
-```php
-<?php
-namespace MyNamespace;
-
-use League\Tactician\CommandBus;
-use Zend\ServiceManager\ServiceManager;
-use MyNamespace\Service\MyService;
-
-class Module
-{
-    public function getServiceConfig()
-    {
-        return [
-            'factories' => [
-                MyService::class => function(ServiceManager $serviceManager) {
-                    $commandBus = $serviceManager->get(CommandBus::class);
-                    return new MyService($commandBus);
-                },
-            ],
-        ];
-    }
-}
-```
+You can inject the `CommandBus` into yout service layer through a factory by simply requesting the `League\Tactician\CommandBus::class` from the __Container__.
 
 ### Configuring
 
