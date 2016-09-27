@@ -35,11 +35,8 @@ class ZendLocator implements HandlerLocator
 
         $serviceNameOrFQCN = $this->handlerMap[$commandName];
 
-        try {
+        if ($this->serviceLocator->has($serviceNameOrFQCN)) {
             return $this->serviceLocator->get($serviceNameOrFQCN);
-        } catch (ServiceNotFoundException $e) {
-            // Further check exists for class availability.
-            // If not, Exception will be thrown anyway.
         }
 
         if (class_exists($serviceNameOrFQCN)) {
