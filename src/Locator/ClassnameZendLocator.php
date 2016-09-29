@@ -28,11 +28,8 @@ class ClassnameZendLocator implements HandlerLocator
     {
         $handlerFQCN = $commandName . 'Handler';
 
-        try {
+        if ($this->serviceLocator->has($handlerFQCN)) {
             return $this->serviceLocator->get($handlerFQCN);
-        } catch (ServiceNotFoundException $e) {
-            // Further check exists for class availability.
-            // If not, Exception will be thrown anyway.
         }
 
         if (class_exists($handlerFQCN)) {
