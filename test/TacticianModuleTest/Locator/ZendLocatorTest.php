@@ -86,11 +86,13 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetHandlerForCommandShouldReturnValidHandler()
     {
-        $this->serviceLocator->expects($this->once())
+        $handler = new \stdClass();
+        
+        $this->serviceLocator->expects($this->at(0))
             ->method('has')
             ->will($this->returnValue(true));
         
-        $this->serviceLocator->expects($this->at(0))
+        $this->serviceLocator->expects($this->at(1))
             ->method('get')
             ->with($this->equalTo('config'))
             ->will($this->returnValue([
@@ -101,11 +103,11 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
                 ],
             ]));
 
-        $this->serviceLocator->expects($this->at(1))
+        $this->serviceLocator->expects($this->at(2))
             ->method('get')
             ->with($this->equalTo(\stdClass::class))
-            ->will($this->returnValue(new \stdClass()));
+            ->will($this->returnValue($handler));
 
-        $this->assertEquals(new \stdClass(), $this->locator->getHandlerForCommand('command'));
+        $this->assertSame($handler, $this->locator->getHandlerForCommand('command'));
     }
 }
