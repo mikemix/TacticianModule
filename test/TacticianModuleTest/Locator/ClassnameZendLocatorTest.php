@@ -32,9 +32,9 @@ class ClassnameZendLocatorTest extends \PHPUnit_Framework_TestCase
     public function testGetHandlerForCommandShouldThrowExceptionOnMissingCommandHandler()
     {
         $this->serviceLocator->expects($this->once())
-            ->method('get')
+            ->method('has')
             ->with($this->equalTo('App\Command\SomeCommandHandler'))
-            ->will($this->throwException(new ServiceNotFoundException()));
+            ->will($this->returnValue(false));
 
         $this->setExpectedException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('App\Command\SomeCommand');
