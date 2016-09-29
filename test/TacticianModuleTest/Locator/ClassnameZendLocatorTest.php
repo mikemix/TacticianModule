@@ -55,6 +55,11 @@ class ClassnameZendLocatorTest extends \PHPUnit_Framework_TestCase
         $handler = new \stdClass();
 
         $this->serviceLocator->expects($this->once())
+            ->method('has')
+            ->with($this->equalTo(\stdClass::class . 'Handler'))
+            ->will($this->returnValue(true));
+        
+        $this->serviceLocator->expects($this->once())
             ->method('get')
             ->with($this->equalTo(\stdClass::class . 'Handler'))
             ->will($this->returnValue($handler));
