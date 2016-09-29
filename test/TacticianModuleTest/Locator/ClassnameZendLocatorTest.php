@@ -23,7 +23,7 @@ class ClassnameZendLocatorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->serviceLocator = $this->getMockBuilder(ServiceLocatorInterface::class)
-            ->setMethods(['get'])
+            ->setMethods(['get', 'has'])
             ->getMockForAbstractClass();
 
         $this->locator = new ClassnameZendLocator($this->serviceLocator);
