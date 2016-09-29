@@ -4,7 +4,6 @@ namespace TacticianModuleTest\Locator;
 use League\Tactician\Exception\MissingHandlerException;
 use TacticianModule\Locator\ZendLocator;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 class ZendLocatorTest extends \PHPUnit_Framework_TestCase
 {
