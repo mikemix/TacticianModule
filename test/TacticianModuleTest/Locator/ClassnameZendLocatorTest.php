@@ -43,9 +43,9 @@ class ClassnameZendLocatorTest extends \PHPUnit_Framework_TestCase
     public function testGetHandlerForCommandShouldAllowFQCN()
     {
         $this->serviceLocator->expects($this->once())
-            ->method('get')
+            ->method('has')
             ->with($this->equalTo(CommandHandler::class))
-            ->will($this->throwException(new ServiceNotFoundException()));
+            ->will($this->returnValue(false));
 
         $this->assertInstanceOf(CommandHandler::class, $this->locator->getHandlerForCommand(Command::class));
     }
