@@ -6,7 +6,6 @@ use TacticianModule\Locator\ClassnameZendLocator;
 use TestObjects\Command;
 use TestObjects\CommandHandler;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 class ClassnameZendLocatorTest extends \PHPUnit_Framework_TestCase
 {
