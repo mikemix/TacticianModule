@@ -56,9 +56,9 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
             ]));
 
         $this->serviceLocator->expects($this->at(1))
-            ->method('get')
+            ->method('has')
             ->with($this->equalTo('handler'))
-            ->will($this->throwException(new ServiceNotFoundException));
+            ->will($this->returnValue(false));
 
         $this->setExpectedException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('command');
@@ -78,9 +78,9 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
             ]));
 
         $this->serviceLocator->expects($this->at(1))
-            ->method('get')
+            ->method('has')
             ->with($this->equalTo(\stdClass::class))
-            ->will($this->throwException(new ServiceNotFoundException));
+            ->will($this->returnValue(false));
 
         $this->assertInstanceOf(\stdClass::class, $this->locator->getHandlerForCommand('command'));
     }
