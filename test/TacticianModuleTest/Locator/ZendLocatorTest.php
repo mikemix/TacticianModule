@@ -21,7 +21,7 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->serviceLocator = $this->getMockBuilder(ServiceLocatorInterface::class)
-            ->setMethods(['get'])
+            ->setMethods(['get', 'has'])
             ->getMockForAbstractClass();
 
         $this->locator = new ZendLocator($this->serviceLocator);
@@ -87,6 +87,10 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetHandlerForCommandShouldReturnValidHandler()
     {
+        $this->serviceLocator->expects($this->once())
+            ->method('has')
+            ->will($this->returnValue(true));
+        
         $this->serviceLocator->expects($this->at(0))
             ->method('get')
             ->with($this->equalTo('config'))
