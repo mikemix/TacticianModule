@@ -2,7 +2,7 @@
 
 ## Did I help? If so please consider donating
 
-[![](http://img.shields.io/gratipay/user/mikemix.svg)]()
+[![](http://img.shields.io/gratipay/user/mikemix.svg)](https://gratipay.com/TacticianModule-for-Zend-Framework/)
 
 Donations will encourage me to work harder on this free project.
 
