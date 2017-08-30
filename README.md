@@ -1,8 +1,14 @@
 # Tactician ZF3 Module
 
-[![Build Status](https://travis-ci.org/mikemix/TacticianModule.svg?branch=master)](https://travis-ci.org/mikemix/TacticianModule) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/556b5a106365320026fa4500/badge.svg?style=flat)](https://www.versioneye.com/user/projects/556b5a106365320026fa4500) [![Latest Stable Version](https://poser.pugx.org/mikemix/tactician-module/v/stable)](https://packagist.org/packages/mikemix/tactician-module) [![Total Downloads](https://poser.pugx.org/mikemix/tactician-module/downloads)](https://packagist.org/packages/mikemix/tactician-module) [![License](https://poser.pugx.org/mikemix/tactician-module/license)](https://packagist.org/packages/mikemix/tactician-module)
+## Did I help? If so please consider donating
 
-## Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 applications.
+[![](http://img.shields.io/gratipay/user/mikemix.svg)]()
+
+Donations will encourage me to work harder on this free project.
+
+### Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 applications.
+
+[![Build Status](https://travis-ci.org/mikemix/TacticianModule.svg?branch=master)](https://travis-ci.org/mikemix/TacticianModule) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/556b5a106365320026fa4500/badge.svg?style=flat)](https://www.versioneye.com/user/projects/556b5a106365320026fa4500) [![Latest Stable Version](https://poser.pugx.org/mikemix/tactician-module/v/stable)](https://packagist.org/packages/mikemix/tactician-module) [![Total Downloads](https://poser.pugx.org/mikemix/tactician-module/downloads)](https://packagist.org/packages/mikemix/tactician-module) [![License](https://poser.pugx.org/mikemix/tactician-module/license)](https://packagist.org/packages/mikemix/tactician-module)
 
 ### Installation
 
