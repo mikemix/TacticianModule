@@ -35,8 +35,7 @@ class DoctrineTransactionFactoryTest extends \PHPUnit_Framework_TestCase
                 ],
         ]));
 
-        $doctrineStub = $this->getMockBuilder('Doctrine\ORM\EntityManager')
-            ->disableOriginalConstructor()
+        $doctrineStub = $this->getMockBuilder(\Doctrine\ORM\EntityManagerInterface::class)
             ->getMock();
 
         $this->serviceLocator->expects($this->at(1))
