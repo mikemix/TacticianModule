@@ -9,7 +9,7 @@
   },
   "require-dev": {
     "league/tactician-doctrine": "^1.0",
-    "phpunit/phpunit": "^4.8",
+    "phpunit/phpunit": "^4.8.36",
     "doctrine/orm": "^2.5"
   },
   "keywords": [
