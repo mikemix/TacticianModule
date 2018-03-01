@@ -1,12 +1,10 @@
 # Tactician ZF3 Module
 
-Donations will encourage me to work harder on this free project.
-
-### Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 applications.
+Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 applications.
 
 [![Build Status](https://travis-ci.org/mikemix/TacticianModule.svg?branch=master)](https://travis-ci.org/mikemix/TacticianModule) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/556b5a106365320026fa4500/badge.svg?style=flat)](https://www.versioneye.com/user/projects/556b5a106365320026fa4500) [![Latest Stable Version](https://poser.pugx.org/mikemix/tactician-module/v/stable)](https://packagist.org/packages/mikemix/tactician-module) [![Total Downloads](https://poser.pugx.org/mikemix/tactician-module/downloads)](https://packagist.org/packages/mikemix/tactician-module) [![License](https://poser.pugx.org/mikemix/tactician-module/license)](https://packagist.org/packages/mikemix/tactician-module)
 
-### Installation
+## Installation
 
 Best install with Composer:
 
@@ -21,7 +19,7 @@ Best install with Composer:
     ],
 ```
 
-### Using
+## Using
 
 The module presents a __Controller Plugin__ called `tacticianCommandBus()` for easy use of dispatching commands. If no command object is passed to it, the CommandBus object will be returned. If you pass the command however, it will be passed over to the CommandBus and handled, and the output from the handler will be returned.
 
@@ -85,7 +83,7 @@ final class UserLoginHandler
 
 You can inject the `CommandBus` into yout service layer through a factory by simply requesting the `League\Tactician\CommandBus::class` from the __Container__.
 
-### Configuring
+## Configuring
 
 The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `HandlerInflector` configured as default. If you wish to override the default locator or default command bus implementations, then simply use the `tactician` key in the merged config.
 
@@ -117,7 +115,7 @@ To add custom middleware to the middleware stack, add it to the `middleware` arr
 ],
 ```
 
-### Basic usage
+## Basic usage
 
 Basicly, all you probably will want to do, is to define the `handler-map` array in your module's configuration. For example:
 
@@ -134,9 +132,9 @@ Basicly, all you probably will want to do, is to define the `handler-map` array 
     ];
 ```
 
-### Plugins
+## Plugins
 
-#### LockingMiddleware
+### LockingMiddleware
 
 The [LockingMiddleware](http://tactician.thephpleague.com/plugins/locking-middleware/) can now be used out of the box.
 Simply add the `League\Tactician\Plugins\LockingMiddleware` FQCN to the TacticianModule's middleware configuration with
@@ -155,7 +153,7 @@ appropriate priority. You probably want to execute it before the `CommandHandler
     ];
 ```
 
-#### TransactionMiddleware
+### TransactionMiddleware
 
 The [TransactionMiddleware](http://tactician.thephpleague.com/plugins/doctrine/) can now be used out of the box.
 Simply add the `League\Tactician\Doctrine\ORM\TransactionMiddleware` FQCN to the TacticianModule's middleware configuration with
@@ -174,9 +172,9 @@ appropriate priority. You probably want to execute it before the `CommandHandler
     ];
 ```
 
-### Changing the Handler Locator
+## Changing the Handler Locator
 
-#### ClassnameZendLocator
+### ClassnameZendLocator
 
 This locator simply appends the word `Handler` to the command's FQCN so you don't have to define any handler map. For example, if you request command `App\Commands\LoginCommand`, locator will try to get `App\Command\LoginCommandHandler` from the Service Manager.
 
