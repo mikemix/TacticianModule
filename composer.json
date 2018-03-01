@@ -10,6 +10,7 @@
   "require-dev": {
     "league/tactician-doctrine": "^1.0",
     "phpunit/phpunit": "^4.8.36",
+    "sebastian/comparator": "^1.2.4",
     "doctrine/orm": "^2.5"
   },
   "keywords": [
