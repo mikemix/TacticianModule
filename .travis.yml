@@ -3,8 +3,14 @@ language: php
 php:
   - 5.6
   - 7.0
+  - 7.1
+  - 7.2
   - nightly
   - hhvm
+
+env:
+  - DEPS=lowest
+  - DEPS=latest
 
 matrix:
   allow_failures:
@@ -12,8 +18,9 @@ matrix:
     - php: hhvm
 
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+  - phpenv config-rm xdebug.ini
+  - if [[ $DEPS == 'lowest' ]]; then composer update --prefer-stable --no-interaction --prefer-lowest ; fi
+  - if [[ $DEPS == 'latest' ]]; then composer update --prefer-stable --no-interaction ; fi
 
 script:
-  - phpunit
+  - vendor/bin/phpunit
