@@ -16,12 +16,16 @@ class TacticianCommandBusPlugin extends AbstractPlugin
         $this->commandBus = $commandBus;
     }
 
+    /**
+     * @param object|null $command
+     * @return CommandBus|mixed
+     */
     public function __invoke($command = null)
     {
-        if (!$command) {
+        if ($command === null) {
             return $this->commandBus;
         }
-        
+
         return $this->commandBus->handle($command);
     }
 }

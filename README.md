@@ -8,16 +8,11 @@ Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com
 
 Best install with Composer:
 
-`composer require mikemix/tactician-module`
-
-### Register as Zend Framework module inside your ```config/application.config.php``` file:
-
-```php
-    'modules' => [
-        'YourApplicationModule',
-        'TacticianModule',
-    ],
 ```
+composer require mikemix/tactician-module
+```
+
+Register as Zend Framework module inside your ```config/application.config.php``` file using `TacticianModule` name.
 
 ## Using
 
@@ -109,8 +104,8 @@ To add custom middleware to the middleware stack, add it to the `middleware` arr
 // ... your module config
 'tactician' => [
     'middleware'         => [
-        YourCustomMiddleware::class  => -100, // execute last
         YourAnotherMiddleware::class => 100, // execute early
+        YourCustomMiddleware::class  => 50,  // execute last
     ],
 ],
 ```

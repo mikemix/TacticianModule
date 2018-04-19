@@ -2,11 +2,11 @@
 namespace TacticianModuleTest;
 
 use League\Tactician\CommandBus;
+use PHPUnit\Framework\TestCase;
 use TacticianModule\Module;
-use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 
-class ModuleTest extends \PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
     public function testConfig()
     {

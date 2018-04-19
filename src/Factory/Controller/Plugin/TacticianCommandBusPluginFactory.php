@@ -1,25 +1,19 @@
 <?php
 namespace TacticianModule\Factory\Controller\Plugin;
 
-use Interop\Container\ContainerInterface;
 use League\Tactician\CommandBus;
+use Psr\Container\ContainerInterface;
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\AbstractPluginManager;
 
-class TacticianCommandBusPluginFactory implements FactoryInterface
+class TacticianCommandBusPluginFactory
 {
     /**
-     * Create service
-     *
-     * @param ContainerInterface $pm
-     * @param string $requestedName
-     * @param array $options
+     * @param ContainerInterface $container
      * @return TacticianCommandBusPlugin
      */
-    public function __invoke(ContainerInterface $pm, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container)
     {
-        $commandBus = $pm->get(CommandBus::class);
+        $commandBus = $container->get(CommandBus::class);
 
         return new TacticianCommandBusPlugin($commandBus);
     }

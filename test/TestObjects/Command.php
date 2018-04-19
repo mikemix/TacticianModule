@@ -1,8 +1,6 @@
 <?php
-namespace TestObjects;
+namespace TacticianModuleTest\TestObjects;
 
 class Command
 {
-
 }
- 
