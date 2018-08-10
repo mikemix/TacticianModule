@@ -1,6 +1,6 @@
 # Tactician ZF3 Module
 
-Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 applications.
+Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 or Expressive applications.
 
 [![Build Status](https://travis-ci.org/mikemix/TacticianModule.svg?branch=master)](https://travis-ci.org/mikemix/TacticianModule) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/556b5a106365320026fa4500/badge.svg?style=flat)](https://www.versioneye.com/user/projects/556b5a106365320026fa4500) [![Latest Stable Version](https://poser.pugx.org/mikemix/tactician-module/v/stable)](https://packagist.org/packages/mikemix/tactician-module) [![Total Downloads](https://poser.pugx.org/mikemix/tactician-module/downloads)](https://packagist.org/packages/mikemix/tactician-module) [![License](https://poser.pugx.org/mikemix/tactician-module/license)](https://packagist.org/packages/mikemix/tactician-module)
 
@@ -8,16 +8,13 @@ Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com
 
 Best install with Composer:
 
-`composer require mikemix/tactician-module`
-
-### Register as Zend Framework module inside your ```config/application.config.php``` file:
-
-```php
-    'modules' => [
-        'YourApplicationModule',
-        'TacticianModule',
-    ],
 ```
+composer require mikemix/tactician-module
+```
+
+Register as Zend Framework module inside your ```config/application.config.php``` file using `TacticianModule` name.
+
+You can also use this package as [Zend Expressive](https://docs.zendframework.com/zend-expressive/v3/features/modular-applications/) module by `TacticianModule\ConfigProvider`
 
 ## Using
 
@@ -109,8 +106,8 @@ To add custom middleware to the middleware stack, add it to the `middleware` arr
 // ... your module config
 'tactician' => [
     'middleware'         => [
-        YourCustomMiddleware::class  => -100, // execute last
         YourAnotherMiddleware::class => 100, // execute early
+        YourCustomMiddleware::class  => 50,  // execute last
     ],
 ],
 ```

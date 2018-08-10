@@ -3,11 +3,13 @@ namespace TacticianModuleTest\Factory;
 
 use League\Tactician\CommandBus;
 use League\Tactician\Middleware;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 use TacticianModule\Factory\CommandBusFactory;
 use TacticianModuleTest\Middleware\CustomMiddleware;
 use Zend\ServiceManager\ServiceManager;
 
-class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
+class CommandBusFactoryTest extends TestCase
 {
     /** @var ServiceManager */
     private $serviceLocator;
@@ -18,13 +20,12 @@ class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->serviceLocator = new ServiceManager();
-
         $this->factory = new CommandBusFactory();
     }
 
     public function testCreateServiceWithOneMiddleware()
     {
-        $command = new \stdClass();
+        $command = new stdClass();
 
         $middlewareStub = $this->getMockBuilder(Middleware::class)
             ->setMethods(['execute'])
@@ -75,7 +76,7 @@ class CommandBusFactoryTest extends \PHPUnit_Framework_TestCase
             $this->serviceLocator,
             CommandBus::class
         );
-        $output = $commandBus->handle(new \stdClass());
+        $output = $commandBus->handle(new stdClass());
 
         $this->assertEquals('123', $output);
     }

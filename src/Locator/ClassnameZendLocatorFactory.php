@@ -2,20 +2,15 @@
 
 namespace TacticianModule\Locator;
 
-use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
 
-class ClassnameZendLocatorFactory implements FactoryInterface
+class ClassnameZendLocatorFactory
 {
     /**
-     * Create service
-     *
      * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array $options
      * @return ClassnameZendLocator
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container)
     {
         return new ClassnameZendLocator($container);
     }

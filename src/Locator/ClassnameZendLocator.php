@@ -3,15 +3,15 @@ namespace TacticianModule\Locator;
 
 use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Psr\Container\ContainerInterface;
 
 class ClassnameZendLocator implements HandlerLocator
 {
-    private $serviceLocator;
+    private $container;
 
-    public function __construct(ServiceLocatorInterface $serviceLocator)
+    public function __construct(ContainerInterface $container)
     {
-        $this->serviceLocator = $serviceLocator;
+        $this->container = $container;
     }
 
     /**
@@ -27,8 +27,8 @@ class ClassnameZendLocator implements HandlerLocator
     {
         $handlerFQCN = $commandName . 'Handler';
 
-        if ($this->serviceLocator->has($handlerFQCN)) {
-            return $this->serviceLocator->get($handlerFQCN);
+        if ($this->container->has($handlerFQCN)) {
+            return $this->container->get($handlerFQCN);
         }
 
         if (class_exists($handlerFQCN)) {

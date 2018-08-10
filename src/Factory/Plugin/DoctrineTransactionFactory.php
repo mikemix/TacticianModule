@@ -1,21 +1,16 @@
 <?php
 namespace TacticianModule\Factory\Plugin;
 
-use Interop\Container\ContainerInterface;
 use League\Tactician\Doctrine\ORM\TransactionMiddleware;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
 
-class DoctrineTransactionFactory implements FactoryInterface
+class DoctrineTransactionFactory
 {
     /**
-     * Create service
-     *
      * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array $options
      * @return TransactionMiddleware
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container)
     {
         $config = $container->get('config')['tactician']['plugins'];
         $ormKey = $config[TransactionMiddleware::class];

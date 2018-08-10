@@ -1,6 +1,5 @@
 /vendor
 /.idea
 composer.phar
-humbuglog.txt
 phpunit.xml
 composer.lock

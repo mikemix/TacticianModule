@@ -2,13 +2,16 @@
 namespace TacticianModuleTest\Controller\Plugin;
 
 use League\Tactician\CommandBus;
+use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
+use stdClass;
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
 
-class TacticianCommandBusPluginTest extends \PHPUnit_Framework_TestCase
+class TacticianCommandBusPluginTest extends TestCase
 {
     public function testInvokeShouldReturnCommandBus()
     {
-        /** @var CommandBus|\PHPUnit_Framework_MockObject_MockObject $commandBusMock */
+        /** @var CommandBus|PHPUnit_Framework_MockObject_MockObject $commandBusMock */
         $commandBusMock = $this->getMockBuilder(CommandBus::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -20,9 +23,9 @@ class TacticianCommandBusPluginTest extends \PHPUnit_Framework_TestCase
 
     public function testInvokeWithCommandShouldPassItToCommandBus()
     {
-        $command = new \stdClass();
+        $command = new stdClass();
 
-        /** @var CommandBus|\PHPUnit_Framework_MockObject_MockObject $commandBusMock */
+        /** @var CommandBus|PHPUnit_Framework_MockObject_MockObject $commandBusMock */
         $commandBusMock = $this->getMockBuilder(CommandBus::class)
             ->setMethods(['handle'])
             ->disableOriginalConstructor()

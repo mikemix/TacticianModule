@@ -5,10 +5,11 @@ use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
 use League\Tactician\Handler\Locator\HandlerLocator;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
+use PHPUnit\Framework\TestCase;
 use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
 use Zend\ServiceManager\ServiceManager;
 
-class CommandHandlerMiddlewareFactoryTest extends \PHPUnit_Framework_TestCase
+class CommandHandlerMiddlewareFactoryTest extends TestCase
 {
     public function testCreateService()
     {
@@ -22,13 +23,13 @@ class CommandHandlerMiddlewareFactoryTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $extractorStub = $this->getMockBuilder(CommandNameExtractor::class)
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $locatorStub = $this->getMockBuilder(HandlerLocator::class)
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $inflectorStub = $this->getMockBuilder(MethodNameInflector::class)
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $serviceLocator->setService('extractor-service', $extractorStub);
         $serviceLocator->setService('locator-service', $locatorStub);

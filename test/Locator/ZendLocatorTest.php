@@ -2,33 +2,35 @@
 namespace TacticianModuleTest\Locator;
 
 use League\Tactician\Exception\MissingHandlerException;
+use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
+use Psr\Container\ContainerInterface;
+use stdClass;
 use TacticianModule\Locator\ZendLocator;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ZendLocatorTest extends \PHPUnit_Framework_TestCase
+class ZendLocatorTest extends TestCase
 {
     /**
-     * @var ServiceLocatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ContainerInterface|PHPUnit_Framework_MockObject_MockObject
      */
-    protected $serviceLocator;
+    private $container;
 
     /**
      * @var ZendLocator
      */
-    protected $locator;
+    private $locator;
 
     public function setUp()
     {
-        $this->serviceLocator = $this->getMockBuilder(ServiceLocatorInterface::class)
-            ->setMethods(['get', 'has'])
-            ->getMockForAbstractClass();
+        $this->container = $this->getMockBuilder(ContainerInterface::class)
+            ->getMock();
 
-        $this->locator = new ZendLocator($this->serviceLocator);
+        $this->locator = new ZendLocator($this->container);
     }
 
     public function testGetHandlerForCommandShouldThrowExceptionOnMissingCommandHandler()
     {
-        $this->serviceLocator->expects($this->once())
+        $this->container->expects($this->once())
             ->method('get')
             ->with($this->equalTo('config'))
             ->will($this->returnValue([
@@ -43,7 +45,7 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetHandlerForCommandShouldThrowExceptionOnMissingServiceNameAndMissingClass()
     {
-        $this->serviceLocator->expects($this->at(0))
+        $this->container->expects($this->at(0))
             ->method('get')
             ->with($this->equalTo('config'))
             ->will($this->returnValue([
@@ -54,7 +56,7 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
                 ],
             ]));
 
-        $this->serviceLocator->expects($this->at(1))
+        $this->container->expects($this->at(1))
             ->method('has')
             ->with($this->equalTo('handler'))
             ->will($this->returnValue(false));
@@ -65,47 +67,47 @@ class ZendLocatorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetHandlerForCommandShouldAllowFQCN()
     {
-        $this->serviceLocator->expects($this->at(0))
+        $this->container->expects($this->at(0))
             ->method('get')
             ->with($this->equalTo('config'))
             ->will($this->returnValue([
                 'tactician' => [
                     'handler-map' => [
-                        'command' => \stdClass::class,
+                        'command' => stdClass::class,
                     ]
                 ],
             ]));
 
-        $this->serviceLocator->expects($this->at(1))
+        $this->container->expects($this->at(1))
             ->method('has')
-            ->with($this->equalTo(\stdClass::class))
+            ->with($this->equalTo(stdClass::class))
             ->will($this->returnValue(false));
 
-        $this->assertInstanceOf(\stdClass::class, $this->locator->getHandlerForCommand('command'));
+        $this->assertInstanceOf(stdClass::class, $this->locator->getHandlerForCommand('command'));
     }
 
     public function testGetHandlerForCommandShouldReturnValidHandler()
     {
-        $handler = new \stdClass();
+        $handler = new stdClass();
 
-        $this->serviceLocator->expects($this->at(0))
+        $this->container->expects($this->at(0))
             ->method('get')
             ->with($this->equalTo('config'))
             ->will($this->returnValue([
                 'tactician' => [
                     'handler-map' => [
-                        'command' => \stdClass::class,
+                        'command' => stdClass::class,
                     ]
                 ],
             ]));
 
-        $this->serviceLocator->expects($this->at(1))
+        $this->container->expects($this->at(1))
             ->method('has')
             ->will($this->returnValue(true));
 
-        $this->serviceLocator->expects($this->at(2))
+        $this->container->expects($this->at(2))
             ->method('get')
-            ->with($this->equalTo(\stdClass::class))
+            ->with($this->equalTo(stdClass::class))
             ->will($this->returnValue($handler));
 
         $this->assertSame($handler, $this->locator->getHandlerForCommand('command'));
