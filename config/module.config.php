@@ -5,6 +5,7 @@ use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\Locator\InMemoryLocator;
 use League\Tactician\Handler\MethodNameInflector\HandleInflector;
+use League\Tactician\Handler\MethodNameInflector\InvokeInflector;
 use League\Tactician\Plugins\LockingMiddleware;
 use TacticianModule\Factory\CommandBusFactory;
 use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
@@ -22,6 +23,7 @@ return [
             ClassNameExtractor::class   => ClassNameExtractor::class,
             HandleInflector::class      => HandleInflector::class,
             LockingMiddleware::class    => LockingMiddleware::class,
+            InvokeInflector::class      => InvokeInflector::class
         ],
         'factories' => [
             CommandBus::class               => CommandBusFactory::class,
