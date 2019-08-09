@@ -5,7 +5,8 @@ php:
   - 7.0
   - 7.1
   - 7.2
-  - nightly
+  - 7.3
+  - 7.4snapshot
   - hhvm
 
 env:
@@ -14,7 +15,6 @@ env:
 
 matrix:
   allow_failures:
-    - php: nightly
     - php: hhvm
 
 before_script:
