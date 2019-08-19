@@ -41,7 +41,7 @@
       "TacticianModuleTest\\": "test/"
     }
   },
-  "suggests": {
+  "suggest": {
     "mikemix/mxdi-module": "To configure dependency injection in Zend Framework 2 using annotations"
   }
 }

@@ -5,7 +5,7 @@ php:
   - 7.0
   - 7.1
   - 7.2
-  - nightly
+  - 7.3
   - hhvm
 
 env:
@@ -14,11 +14,9 @@ env:
 
 matrix:
   allow_failures:
-    - php: nightly
     - php: hhvm
 
 before_script:
-  - phpenv config-rm xdebug.ini
   - if [[ $DEPS == 'lowest' ]]; then composer update --prefer-stable --no-interaction --prefer-lowest ; fi
   - if [[ $DEPS == 'latest' ]]; then composer update --prefer-stable --no-interaction ; fi
 
