@@ -18,7 +18,6 @@ matrix:
     - php: hhvm
 
 before_script:
-  - phpenv config-rm xdebug.ini
   - if [[ $DEPS == 'lowest' ]]; then composer update --prefer-stable --no-interaction --prefer-lowest ; fi
   - if [[ $DEPS == 'latest' ]]; then composer update --prefer-stable --no-interaction ; fi
 
