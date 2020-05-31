@@ -7,7 +7,7 @@ use League\Tactician\Handler\Locator\HandlerLocator;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use PHPUnit\Framework\TestCase;
 use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 
 class CommandHandlerMiddlewareFactoryTest extends TestCase
 {

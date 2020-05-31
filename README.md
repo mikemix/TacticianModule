@@ -1,6 +1,6 @@
-# Tactician ZF3 Module
+# Tactician Laminas Module
 
-Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your ZF3 or Expressive applications.
+Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your Laminas or Mezzio applications.
 
 [![Build Status](https://travis-ci.org/mikemix/TacticianModule.svg?branch=master)](https://travis-ci.org/mikemix/TacticianModule) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/mikemix/TacticianModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mikemix/TacticianModule/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/556b5a106365320026fa4500/badge.svg?style=flat)](https://www.versioneye.com/user/projects/556b5a106365320026fa4500) [![Latest Stable Version](https://poser.pugx.org/mikemix/tactician-module/v/stable)](https://packagist.org/packages/mikemix/tactician-module) [![Total Downloads](https://poser.pugx.org/mikemix/tactician-module/downloads)](https://packagist.org/packages/mikemix/tactician-module) [![License](https://poser.pugx.org/mikemix/tactician-module/license)](https://packagist.org/packages/mikemix/tactician-module)
 
@@ -12,9 +12,9 @@ Best install with Composer:
 composer require mikemix/tactician-module
 ```
 
-Register as Zend Framework module inside your ```config/application.config.php``` file using `TacticianModule` name.
+Register as Laminas Framework module inside your ```config/application.config.php``` file using `TacticianModule` name.
 
-You can also use this package as [Zend Expressive](https://docs.zendframework.com/zend-expressive/v3/features/modular-applications/) module by `TacticianModule\ConfigProvider`
+You can also use this package as [Mezzio](https://docs.zendframework.com/zend-expressive/v3/features/modular-applications/) module by `TacticianModule\ConfigProvider`
 
 ## Using
 
@@ -82,12 +82,12 @@ You can inject the `CommandBus` into yout service layer through a factory by sim
 
 ## Configuring
 
-The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `HandlerInflector` configured as default. If you wish to override the default locator or default command bus implementations, then simply use the `tactician` key in the merged config.
+The module ships with a `LaminasLocator` and a `CommandHandlerMiddleware` and a `HandlerInflector` configured as default. If you wish to override the default locator or default command bus implementations, then simply use the `tactician` key in the merged config.
 
 ```php
 'tactician' => [
     'default-extractor'  => League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor::class,
-    'default-locator'    => TacticianModule\Locator\ZendLocator::class,
+    'default-locator'    => TacticianModule\Locator\LaminasLocator::class,
     'default-inflector'  => League\Tactician\Handler\HandleInflector::class,
     'handler-map'        => [],
     'middleware'         => [
@@ -98,7 +98,7 @@ The module ships with a `ZendLocator` and a `CommandHandlerMiddleware` and a `Ha
 
 `default-extractor`, `default-locator` and `default-inflector` are service manager keys to registered services.
 
-`ZendLocator` expects handlers in the `handler-map` to be `commandName => serviceManagerKey` or `commandName => Handler_FQCN`, altough to prevent additional costly checks, use serviceManagerKey and make sure it is available as a Zend Service.
+`LaminasLocator` expects handlers in the `handler-map` to be `commandName => serviceManagerKey` or `commandName => Handler_FQCN`, altough to prevent additional costly checks, use serviceManagerKey and make sure it is available as a Laminas Service.
 
 To add custom middleware to the middleware stack, add it to the `middleware` array as `ServiceName` => `priority` in which the middleware are supposed to be executed (higher the number, earlier it will execute). For example
 
@@ -171,17 +171,17 @@ appropriate priority. You probably want to execute it before the `CommandHandler
 
 ## Changing the Handler Locator
 
-### ClassnameZendLocator
+### ClassnameLaminasLocator
 
 This locator simply appends the word `Handler` to the command's FQCN so you don't have to define any handler map. For example, if you request command `App\Commands\LoginCommand`, locator will try to get `App\Command\LoginCommandHandler` from the Service Manager.
 
 Locator will work with FQCN's not registered in the Service Manager, altough to prevent additional costly checks, make sure the locator is registered as a invokable or factory.
 
-To change the locator from ZendLocator to ClassnameZendLocator simply set it in the config:
+To change the locator from LaminasLocator to ClassnameLaminasLocator simply set it in the config:
 
 ```php
 // ... your module config
 'tactician' => [
-    'default-locator' => TacticianModule\Locator\ClassnameZendLocator::class,
+    'default-locator' => TacticianModule\Locator\ClassnameLaminasLocator::class,
 ],
 ```

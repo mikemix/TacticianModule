@@ -4,14 +4,14 @@ namespace TacticianModule\Locator;
 
 use Psr\Container\ContainerInterface;
 
-class ZendLocatorFactory
+class ClassnameLaminasLocatorFactory
 {
     /**
      * @param ContainerInterface $container
-     * @return ZendLocator
+     * @return ClassnameLaminasLocator
      */
     public function __invoke(ContainerInterface $container)
     {
-        return new ZendLocator($container);
+        return new ClassnameLaminasLocator($container);
     }
 }

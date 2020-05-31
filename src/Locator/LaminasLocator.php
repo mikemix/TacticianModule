@@ -5,7 +5,7 @@ use League\Tactician\Exception\MissingHandlerException;
 use League\Tactician\Handler\Locator\HandlerLocator;
 use Psr\Container\ContainerInterface;
 
-class ZendLocator implements HandlerLocator
+class LaminasLocator implements HandlerLocator
 {
     /** @var array */
     protected $handlerMap;
