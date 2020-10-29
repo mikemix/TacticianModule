@@ -11,8 +11,7 @@ class ModuleTest extends TestCase
     public function testConfig()
     {
         $module = new Module();
-
-        $this->assertInternalType('array', $module->getConfig());
+        $this->assertIsArray($module->getConfig());
     }
 
     public function testCreateCommandBusWithServiceManager()

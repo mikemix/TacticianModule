@@ -17,7 +17,7 @@ class CommandBusFactoryTest extends TestCase
     /** @var CommandBusFactory */
     private $factory;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->serviceLocator = new ServiceManager();
         $this->factory = new CommandBusFactory();

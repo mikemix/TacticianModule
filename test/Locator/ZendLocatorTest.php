@@ -20,7 +20,7 @@ class ZendLocatorTest extends TestCase
      */
     private $locator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = $this->getMockBuilder(ContainerInterface::class)
             ->getMock();
@@ -39,7 +39,7 @@ class ZendLocatorTest extends TestCase
                 ],
             ]));
 
-        $this->setExpectedException(MissingHandlerException::class);
+        $this->expectException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('command');
     }
 
@@ -61,7 +61,7 @@ class ZendLocatorTest extends TestCase
             ->with($this->equalTo('handler'))
             ->will($this->returnValue(false));
 
-        $this->setExpectedException(MissingHandlerException::class);
+        $this->expectException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('command');
     }
 

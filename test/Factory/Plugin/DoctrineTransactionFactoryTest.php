@@ -15,7 +15,7 @@ class DoctrineTransactionFactoryTest extends TestCase
     /** @var DoctrineTransactionFactory */
     private $factory;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = $this->getMockBuilder(ContainerInterface::class)
             ->getMock();

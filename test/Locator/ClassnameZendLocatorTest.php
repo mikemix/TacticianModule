@@ -22,7 +22,7 @@ class ClassnameZendLocatorTest extends TestCase
      */
     private $locator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = $this->getMockBuilder(ContainerInterface::class)
             ->getMock();
@@ -37,7 +37,7 @@ class ClassnameZendLocatorTest extends TestCase
             ->with($this->equalTo('App\Command\SomeCommandHandler'))
             ->will($this->returnValue(false));
 
-        $this->setExpectedException(MissingHandlerException::class);
+        $this->expectException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('App\Command\SomeCommand');
     }
 
