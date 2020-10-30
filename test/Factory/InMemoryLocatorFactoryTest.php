@@ -4,7 +4,7 @@ namespace TacticianModuleTest\Factory;
 use League\Tactician\Handler\Locator\InMemoryLocator;
 use PHPUnit\Framework\TestCase;
 use TacticianModule\Factory\InMemoryLocatorFactory;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 
 class InMemoryLocatorFactoryTest extends TestCase
 {
