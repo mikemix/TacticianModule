@@ -2,14 +2,14 @@
   "name": "mikemix/tactician-module",
   "description": "Laminas Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
   "require": {
-    "php": "^7.0",
+    "php": "^7.1",
     "league/tactician": "^1.0",
     "laminas/laminas-mvc": "^3.1.1",
     "psr/container": "^1.0"
   },
   "require-dev": {
     "league/tactician-doctrine": "^1.0",
-    "phpunit/phpunit": "^6.5.14",
+    "phpunit/phpunit": "^7.5.20",
     "doctrine/orm": "^2.5"
   },
   "keywords": [
