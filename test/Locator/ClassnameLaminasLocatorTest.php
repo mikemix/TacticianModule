@@ -22,7 +22,7 @@ class ClassnameLaminasLocatorTest extends TestCase
      */
     private $locator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = $this->getMockBuilder(ContainerInterface::class)
             ->getMock();
