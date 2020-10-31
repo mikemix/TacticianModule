@@ -37,7 +37,7 @@ class ClassnameLaminasLocatorTest extends TestCase
             ->with($this->equalTo('App\Command\SomeCommandHandler'))
             ->will($this->returnValue(false));
 
-        $this->setExpectedException(MissingHandlerException::class);
+        $this->expectException(MissingHandlerException::class);
         $this->locator->getHandlerForCommand('App\Command\SomeCommand');
     }
 
