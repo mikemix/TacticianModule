@@ -6,15 +6,10 @@ php:
   - 7.2
   - 7.3
   - 7.4
-  - hhvm
 
 env:
   - DEPS=lowest
   - DEPS=latest
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 before_script:
   - if [[ $DEPS == 'lowest' ]]; then composer update --prefer-stable --no-interaction --prefer-lowest ; fi
