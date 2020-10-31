@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use TacticianModule\Factory\CommandBusFactory;
 use TacticianModuleTest\Middleware\CustomMiddleware;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 
 class CommandBusFactoryTest extends TestCase
 {

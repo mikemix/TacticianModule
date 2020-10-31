@@ -7,7 +7,7 @@ use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Container\ContainerInterface;
 use TacticianModule\Controller\Plugin\TacticianCommandBusPlugin;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 
 class TacticianCommandBusPluginFactoryTest extends TestCase
 {

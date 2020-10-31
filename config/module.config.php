@@ -12,10 +12,10 @@ use TacticianModule\Factory\CommandHandlerMiddlewareFactory;
 use TacticianModule\Factory\Controller\Plugin\TacticianCommandBusPluginFactory;
 use TacticianModule\Factory\InMemoryLocatorFactory;
 use TacticianModule\Factory\Plugin\DoctrineTransactionFactory;
-use TacticianModule\Locator\ClassnameZendLocator;
-use TacticianModule\Locator\ClassnameZendLocatorFactory;
-use TacticianModule\Locator\ZendLocator;
-use TacticianModule\Locator\ZendLocatorFactory;
+use TacticianModule\Locator\ClassnameLaminasLocator;
+use TacticianModule\Locator\ClassnameLaminasLocatorFactory;
+use TacticianModule\Locator\LaminasLocator;
+use TacticianModule\Locator\LaminasLocatorFactory;
 
 return [
     'service_manager' => [
@@ -29,8 +29,8 @@ return [
             CommandBus::class               => CommandBusFactory::class,
             CommandHandlerMiddleware::class => CommandHandlerMiddlewareFactory::class,
             InMemoryLocator::class          => InMemoryLocatorFactory::class,
-            ClassnameZendLocator::class     => ClassnameZendLocatorFactory::class,
-            ZendLocator::class              => ZendLocatorFactory::class,
+            ClassnameLaminasLocator::class     => ClassnameLaminasLocatorFactory::class,
+            LaminasLocator::class              => LaminasLocatorFactory::class,
             'League\Tactician\Doctrine\ORM\TransactionMiddleware' => DoctrineTransactionFactory::class,
         ],
     ],
@@ -41,7 +41,7 @@ return [
     ],
     'tactician' => [
         'default-extractor'  => ClassNameExtractor::class,
-        'default-locator'    => ZendLocator::class,
+        'default-locator'    => LaminasLocator::class,
         'default-inflector'  => HandleInflector::class,
         'handler-map'        => [],
         'plugins'            => [

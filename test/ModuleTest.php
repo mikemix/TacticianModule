@@ -4,7 +4,7 @@ namespace TacticianModuleTest;
 use League\Tactician\CommandBus;
 use PHPUnit\Framework\TestCase;
 use TacticianModule\Module;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 
 class ModuleTest extends TestCase
 {

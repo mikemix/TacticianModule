@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Container\ContainerInterface;
 use stdClass;
-use TacticianModule\Locator\ZendLocator;
+use TacticianModule\Locator\LaminasLocator;
 
-class ZendLocatorTest extends TestCase
+class LaminasLocatorTest extends TestCase
 {
     /**
      * @var ContainerInterface|PHPUnit_Framework_MockObject_MockObject
@@ -16,7 +16,7 @@ class ZendLocatorTest extends TestCase
     private $container;
 
     /**
-     * @var ZendLocator
+     * @var LaminasLocator
      */
     private $locator;
 
@@ -25,7 +25,7 @@ class ZendLocatorTest extends TestCase
         $this->container = $this->getMockBuilder(ContainerInterface::class)
             ->getMock();
 
-        $this->locator = new ZendLocator($this->container);
+        $this->locator = new LaminasLocator($this->container);
     }
 
     public function testGetHandlerForCommandShouldThrowExceptionOnMissingCommandHandler()
