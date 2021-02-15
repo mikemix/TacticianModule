@@ -1,0 +1,43 @@
+name: "Unit tests"
+
+on: [ "pull_request", "push" ]
+
+jobs:
+    unit-tests:
+        name: "Unit tests"
+
+        runs-on: ubuntu-20.04
+
+        strategy:
+            matrix:
+                php-version:
+                    - "7.1"
+                    - "7.2"
+                    - "7.3"
+                    - "7.4"
+                    - "8.0"
+                dependencies:
+                    - lowest
+                    - highest
+        steps:
+            -   name: "Checkout"
+                uses: "actions/checkout@v2"
+
+            -   name: "Caching dependencies"
+                uses: "actions/cache@v2"
+                with:
+                    path: |
+                        ~/.composer/cache
+                        vendor
+                    key: "php-${{ matrix.php-version }}"
+
+            -   name: "Installing dependencies lowest"
+                run: "composer install --no-interaction --no-progress --prefer-lowest --prefer-stable"
+                if: "matrix.dependencies == 'lowest'"
+
+            -   name: "Installing dependencies highest"
+                run: "composer install --no-interaction --no-progress"
+                if: matrix.dependencies != 'lowest'
+
+            -   name: "Unit tests"
+                run: "vendor/bin/phpunit"
