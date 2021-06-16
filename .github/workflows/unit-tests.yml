@@ -32,11 +32,11 @@ jobs:
                     key: "php-${{ matrix.php-version }}"
 
             -   name: "Installing dependencies lowest"
-                run: "composer install --no-interaction --no-progress --prefer-lowest --prefer-stable"
+                run: "composer update --no-interaction --no-progress --prefer-lowest --prefer-stable"
                 if: "matrix.dependencies == 'lowest'"
 
             -   name: "Installing dependencies highest"
-                run: "composer install --no-interaction --no-progress"
+                run: "composer update --no-interaction --no-progress"
                 if: matrix.dependencies != 'lowest'
 
             -   name: "Unit tests"
