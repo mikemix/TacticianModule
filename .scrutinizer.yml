@@ -21,6 +21,9 @@ checks:
         fix_doc_comments: true
 
 build:
+    environment:
+        variables:
+            XDEBUG_MODE: coverage
     tests:
         override:
             -
