@@ -1,4 +1,4 @@
-# Tactician Laminas Module
+# Tactician Laminas/Mezzio Module
 
 Wrapper module for easy use of the [Tactician](http://tactician.thephpleague.com/) Command Bus in your Laminas or Mezzio applications.
 

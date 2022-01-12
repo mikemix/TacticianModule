@@ -1,6 +1,6 @@
 {
   "name": "mikemix/tactician-module",
-  "description": "Laminas Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
+  "description": "Laminas/Mezzio Module to use the League of Extraordinary Packages' Tactician library - flexible command bus implementation",
   "require": {
     "php": "^7.1 || ^8.0",
     "league/tactician": "^1.0",
