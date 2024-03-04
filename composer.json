@@ -4,7 +4,7 @@
   "require": {
     "php": "^7.1 || ^8.0",
     "league/tactician": "^1.0",
-    "psr/container": "^1.0"
+    "psr/container": "^1.0 || ^2.0"
   },
   "require-dev": {
     "league/tactician-doctrine": "^1.0",
@@ -29,6 +29,10 @@
       "name": "Gary Hockin",
       "homepage": "http://hock.in",
       "role": "Trailblazer"
+    },
+    {
+      "name": "Witold Wasiczko",
+      "homepage": "https://github.com/snapshotpl"
     }
   ],
   "autoload": {
